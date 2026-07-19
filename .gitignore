@@ -1,0 +1,23 @@
+# Dependencias y build
+node_modules/
+dist/
+
+# Sistema
+.DS_Store
+*.log
+
+# Config local de herramientas AI (estado por desarrollador, no del proyecto)
+AGENT.md
+CLAUDE.md
+.agent/
+.agent-mem/
+.agents/
+.brainsync/
+.cursor/
+.vscode/
+.mcp.json
+.gemini/
+.cline/
+.cursorrules
+.clineRules
+.windsurfrules
