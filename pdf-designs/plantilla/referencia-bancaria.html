@@ -1,0 +1,123 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════
+  REFERENCIA BANCARIA — Solución créditicia
+  ════════════════════════════════════════════════════════════════
+  Documento simple: un solo dato protagonista (la CLABE) más los
+  datos de apoyo. Usa el mismo documento.css que el resto, con el
+  bloque "REFERENCIA" (.ref-hero / .ref-grid / .ref-verify).
+
+  Para actualizar los datos, cambia solo lo que está entre los
+  comentarios "EDITA".
+  ════════════════════════════════════════════════════════════════
+-->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Referencia bancaria — Solución créditicia</title>
+    <link rel="stylesheet" href="documento.css" />
+  </head>
+  <body>
+    <!-- Botón de descarga (no aparece en el PDF) -->
+    <button class="download-btn no-print" type="button" onclick="window.print()">
+      <span class="material-symbols-outlined">download</span>
+      Descargar PDF
+    </button>
+
+    <div class="sheet">
+      <!-- ─── Elementos fijos (NO editar) ─── -->
+      <img class="watermark" src="assets/logo-primary.png" alt="" aria-hidden="true" />
+      <div class="frame" aria-hidden="true"></div>
+
+      <!-- Encabezado fijo de marca (NO editar) -->
+      <div class="head">
+        <div class="brand">
+          <img src="assets/logo-primary.png" alt="Solución créditicia" />
+          <div>
+            <div class="name">Solución créditicia</div>
+          </div>
+        </div>
+        <div class="meta">
+          <div><b>Referencia bancaria</b></div>
+          <div>México · 2026</div>
+        </div>
+      </div>
+      <div class="topline"></div>
+      <div class="thinline"></div>
+
+      <!-- ══════════ EDITA DE AQUÍ ══════════ -->
+
+      <!-- 1. QUÉ ES ESTE DOCUMENTO -->
+      <div class="kicker">Cuenta oficial para depósitos</div>
+      <h1 class="title">Referencia Bancaria</h1>
+      <p class="lede">
+        Estos son los <strong>únicos</strong> datos bancarios de Solución créditicia. Deposite o
+        transfiera exclusivamente a esta cuenta y valide la información con el
+        <strong>código QR</strong> antes de realizar su pago.
+      </p>
+
+      <!-- 2. EL DATO PRINCIPAL -->
+      <div class="ref-hero">
+        <div class="bank">BBVA México</div>
+        <div class="lbl">CLABE interbancaria · Transferencias SPEI</div>
+        <div class="num">012-180-001-189-742-413</div>
+        <div class="sub">Titular <b>Solución créditicia</b> · Moneda <b>MXN</b></div>
+      </div>
+
+      <!-- 3. DATOS DE APOYO -->
+      <div class="ref-grid solo">
+        <div class="ref-item">
+          <div>
+            <div class="lbl">Número de cuenta</div>
+            <div class="val">011-897-4241</div>
+          </div>
+          <div class="hint">Para depósitos en ventanilla o Practicaja.</div>
+        </div>
+      </div>
+
+      <!-- 4. CÓMO DEPOSITAR -->
+      <div class="notes">
+        <div class="n">
+          <div class="h">Desde tu app</div>
+          <div class="p">
+            Registra la CLABE como cuenta destino y realiza la transferencia SPEI.
+          </div>
+        </div>
+        <div class="n">
+          <div class="h">En sucursal</div>
+          <div class="p">Acude a cualquier sucursal BBVA con el número de cuenta.</div>
+        </div>
+        <div class="n">
+          <div class="h">Concepto</div>
+          <div class="p">Anota tu nombre completo para poder identificar tu pago.</div>
+        </div>
+      </div>
+
+      <!-- 5. VERIFICACIÓN CON QR -->
+      <div class="ref-verify">
+        <div class="qr">
+          <img src="assets/qr-ejemplo.png" alt="Código QR de verificación" />
+          <span>Documento<br />verificable</span>
+        </div>
+        <div class="txt">
+          <h3>Valida antes de depositar</h3>
+          <p>
+            Escanee el código QR para confirmar que estos datos corresponden a Solución créditicia y
+            envíe su <b>comprobante</b> el mismo día por los canales oficiales. Solución créditicia
+            <b>nunca</b> solicita depósitos a cuentas personales ni a números distintos a los de
+            esta referencia.
+          </p>
+        </div>
+      </div>
+
+      <!-- ══════════ FIN DE LA ZONA EDITABLE ══════════ -->
+
+      <!-- Aviso legal fijo (NO editar salvo cambio legal) -->
+      <div class="privacy">
+        <b>Aviso de privacidad.</b> En apego a la Ley Federal de Protección de Datos Personales en
+        Posesión de los Particulares, sus datos son tratados con estricta confidencialidad. Solución
+        créditicia tiene prohibida la distribución y comercialización de su información.
+      </div>
+    </div>
+  </body>
+</html>

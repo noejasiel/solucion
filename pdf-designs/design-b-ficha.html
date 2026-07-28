@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Crédito Aprobado — Ficha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #0a1f44;
+        --navy-deep: #071634;
+        --navy-soft: #1a2f5a;
+        --brass: #c5a059;
+        --brass-light: #e8c176;
+        --ivory: #f8f7f2;
+        --ink: #1b1b1e;
+        --muted: #5b6472;
+        --line: rgba(10, 31, 68, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      @page {
+        size: letter;
+        margin: 0;
+      }
+
+      body {
+        font-family: "Inter", Arial, sans-serif;
+        color: var(--ink);
+        background: #dfe3ea;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "opsz" 24;
+      }
+
+      .sheet {
+        position: relative;
+        width: 8.5in;
+        height: 11in;
+        margin: 0 auto;
+        background: #fff;
+        display: grid;
+        grid-template-columns: 2.5in 1fr;
+        overflow: hidden;
+      }
+
+      /* ---- Barra lateral navy ---- */
+      .side {
+        position: relative;
+        background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+        color: #fff;
+        padding: 0.42in 0.32in;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .side::after {
+        content: "";
+        position: absolute;
+        right: -70px;
+        bottom: -60px;
+        width: 240px;
+        height: 240px;
+        background: url("LOGO_LIGHT") center / contain no-repeat;
+        opacity: 0.06;
+      }
+      .side .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+        z-index: 1;
+      }
+      .side .brand img {
+        width: 46px;
+        height: 46px;
+        object-fit: contain;
+      }
+      .side .brand .name {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--brass-light);
+        line-height: 1.1;
+      }
+      .side .brand .sub {
+        font-size: 7px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 3px;
+      }
+
+      .side .divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.14);
+        margin: 24px 0;
+      }
+
+      .side .kind {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 8px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+      }
+      .side .kind::before {
+        content: "";
+        width: 20px;
+        height: 1px;
+        background: var(--brass);
+      }
+
+      .fields {
+        margin-top: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+        z-index: 1;
+      }
+      .field .lbl {
+        font-size: 7.5px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 600;
+      }
+      .field .val {
+        margin-top: 8px;
+        height: 14px;
+        border-bottom: 1px dashed rgba(232, 193, 118, 0.5);
+      }
+
+      .side .stamp {
+        margin-top: auto;
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+      .side .stamp img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        margin: 0 auto 7px;
+      }
+      .side .stamp .ln {
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+        padding-top: 6px;
+        font-size: 8px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      /* Perforación tipo boleto */
+      .perf {
+        position: absolute;
+        top: 0;
+        left: 2.5in;
+        width: 0;
+        height: 100%;
+        border-left: 1.5px dashed rgba(10, 31, 68, 0.18);
+        z-index: 5;
+      }
+
+      /* ---- Cuerpo ---- */
+      .main {
+        padding: 0.55in 0.45in;
+        display: flex;
+        flex-direction: column;
+      }
+      .main .title {
+        font-family: "Playfair Display", serif;
+        font-weight: 800;
+        font-size: 33px;
+        color: var(--navy);
+        line-height: 1.02;
+      }
+      .main .title .rule {
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--brass), var(--brass-light));
+        margin-top: 8px;
+      }
+      .main .lede {
+        margin-top: 12px;
+        font-size: 10px;
+        line-height: 1.5;
+        color: var(--muted);
+        max-width: 4.2in;
+      }
+
+      .cards {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .card {
+        position: relative;
+        border-radius: 14px;
+        padding: 22px 22px;
+        display: grid;
+        grid-template-columns: 48px 1fr auto;
+        gap: 16px;
+        align-items: center;
+      }
+      .card.primary {
+        background: linear-gradient(120deg, var(--navy) 0%, var(--navy-soft) 100%);
+        color: #fff;
+        border: 1px solid rgba(197, 160, 89, 0.4);
+      }
+      .card.ghost {
+        background: #fff;
+        border: 1px solid var(--line);
+        box-shadow: 0 6px 16px rgba(10, 31, 68, 0.05);
+      }
+      .card .ic {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+      }
+      .card.primary .ic {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(232, 193, 118, 0.5);
+      }
+      .card.ghost .ic {
+        background: var(--ivory);
+        border: 1px solid rgba(197, 160, 89, 0.25);
+      }
+      .card .ic .material-symbols-outlined {
+        color: var(--brass);
+        font-size: 22px;
+      }
+      .card .info .name {
+        font-family: "Playfair Display", serif;
+        font-size: 17px;
+        font-weight: 700;
+      }
+      .card.ghost .info .name {
+        color: var(--navy);
+      }
+      .card .info .meta {
+        font-size: 10px;
+        margin-top: 6px;
+        display: flex;
+        gap: 18px;
+      }
+      .card.primary .info .meta {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .card.ghost .info .meta {
+        color: var(--muted);
+      }
+      .card .info .meta b {
+        font-weight: 600;
+      }
+      .card.primary .info .meta b {
+        color: var(--brass-light);
+      }
+      .card.ghost .info .meta b {
+        color: var(--navy);
+      }
+      .card .amount {
+        text-align: right;
+      }
+      .card .amount .big {
+        font-family: "Playfair Display", serif;
+        font-size: 23px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+      .card.ghost .amount .big {
+        color: var(--navy);
+      }
+      .card .amount .sm {
+        font-size: 7.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin-top: 2px;
+      }
+
+      /* Aprobación: barra pictográfica */
+      .approve {
+        margin-top: 26px;
+        padding: 22px 22px;
+        background: var(--ivory);
+        border: 1px solid rgba(197, 160, 89, 0.3);
+        border-radius: 14px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 16px;
+        align-items: center;
+      }
+      .approve .txt .h {
+        font-family: "Playfair Display", serif;
+        font-size: 14px;
+        color: var(--navy);
+        font-weight: 700;
+      }
+      .approve .txt .p {
+        font-size: 9px;
+        color: var(--muted);
+        margin-top: 3px;
+        line-height: 1.4;
+      }
+      .people {
+        display: flex;
+        gap: 4px;
+      }
+      .people .material-symbols-outlined {
+        font-size: 22px;
+        color: rgba(10, 31, 68, 0.18);
+      }
+      .people .on {
+        color: var(--brass);
+        font-variation-settings: "FILL" 1;
+      }
+      .approve .pctbig {
+        font-family: "Playfair Display", serif;
+        font-size: 30px;
+        font-weight: 800;
+        color: var(--navy);
+        text-align: center;
+        line-height: 1;
+      }
+      .approve .pctbig small {
+        display: block;
+        font-size: 7px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+        font-family: "Inter", sans-serif;
+        margin-top: 2px;
+      }
+
+      /* Próximos pasos */
+      .steps {
+        margin-top: 26px;
+      }
+      .steps-cap {
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .step {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px;
+      }
+      .step .n {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--navy);
+        color: var(--brass-light);
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 13px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 9px;
+      }
+      .step .t {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+      .step .d {
+        font-size: 8.5px;
+        line-height: 1.4;
+        color: var(--muted);
+      }
+
+      .sign-row {
+        margin-top: auto;
+        padding-top: 28px;
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      .sign-row .sign {
+        text-align: center;
+        max-width: 2.6in;
+        margin-left: auto;
+      }
+      .sign-row .ln {
+        border-top: 1.2px solid var(--navy);
+        padding-top: 6px;
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 600;
+      }
+
+      .privacy {
+        margin-top: 14px;
+        padding-top: 10px;
+        border-top: 1px solid var(--line);
+        font-size: 6.5px;
+        line-height: 1.45;
+        color: var(--muted);
+        text-align: justify;
+      }
+      .privacy b {
+        color: var(--navy);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sheet">
+      <!-- Barra lateral -->
+      <aside class="side">
+        <div class="brand">
+          <img src="LOGO_LIGHT" alt="Solución créditicia" />
+          <div>
+            <div class="name">Solución créditicia</div>
+            <div class="sub">Personal y empresarial</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="kind">Inversión · 2026</div>
+
+        <div class="fields">
+          <div class="field">
+            <div class="lbl">Nombre del cliente</div>
+            <div class="val"></div>
+          </div>
+          <div class="field">
+            <div class="lbl">Número de contrato</div>
+            <div class="val"></div>
+          </div>
+          <div class="field">
+            <div class="lbl">Inicio de pago</div>
+            <div class="val"></div>
+          </div>
+          <div class="field">
+            <div class="lbl">Fecha de emisión</div>
+            <div class="val"></div>
+          </div>
+        </div>
+
+        <div class="stamp">
+          <img src="LOGO_LIGHT" alt="" />
+          <div class="ln">Solución créditicia</div>
+        </div>
+      </aside>
+
+      <div class="perf"></div>
+
+      <!-- Cuerpo -->
+      <main class="main">
+        <h1 class="title">Crédito Aprobado<span class="rule"></span></h1>
+        <p class="lede">
+          El estudio realizado a su documentación ha sido <strong>satisfactorio</strong>. Con base
+          en su análisis socioeconómico, elija el esquema de financiamiento que mejor se ajuste a
+          sus objetivos.
+        </p>
+
+        <div class="cards">
+          <div class="card primary">
+            <div class="ic"><span class="material-symbols-outlined">verified</span></div>
+            <div class="info">
+              <div class="name">Crédito Principal</div>
+              <div class="meta">
+                <span>Plazo <b>72 meses</b></span>
+                <span>Aportación <b>$1,142.04</b></span>
+                <span>Respaldo <b>$4,200.00</b></span>
+              </div>
+            </div>
+            <div class="amount">
+              <div class="big">$40,000</div>
+              <div class="sm">Monto</div>
+            </div>
+          </div>
+
+          <div class="card ghost">
+            <div class="ic"><span class="material-symbols-outlined">savings</span></div>
+            <div class="info">
+              <div class="name">Crédito Secundario</div>
+              <div class="meta">
+                <span>Plazo <b>42 meses</b></span>
+                <span>Aportación <b>$1,252.28</b></span>
+                <span>Respaldo <b>$3,300.00</b></span>
+              </div>
+            </div>
+            <div class="amount">
+              <div class="big">$40,000</div>
+              <div class="sm">Monto</div>
+            </div>
+          </div>
+
+          <div class="card ghost">
+            <div class="ic"><span class="material-symbols-outlined">bolt</span></div>
+            <div class="info">
+              <div class="name">Crédito Opcional</div>
+              <div class="meta">
+                <span>Plazo <b>24 meses</b></span>
+                <span>Aportación <b>$2,075.11</b></span>
+                <span>Respaldo <b>$2,200.00</b></span>
+              </div>
+            </div>
+            <div class="amount">
+              <div class="big">$40,000</div>
+              <div class="sm">Monto</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aprobación pictográfica -->
+        <div class="approve">
+          <div class="txt">
+            <div class="h">8 de cada 10 solicitantes aprueban</div>
+            <div class="p">La mayoría de los perfiles evaluados recibe resolución favorable.</div>
+            <div class="people" style="margin-top: 8px">
+              <span class="material-symbols-outlined on">person</span>
+              <span class="material-symbols-outlined on">person</span>
+              <span class="material-symbols-outlined on">person</span>
+              <span class="material-symbols-outlined on">person</span>
+              <span class="material-symbols-outlined on">person</span>
+              <span class="material-symbols-outlined on">person</span>
+              <span class="material-symbols-outlined on">person</span>
+              <span class="material-symbols-outlined on">person</span>
+              <span class="material-symbols-outlined">person</span>
+              <span class="material-symbols-outlined">person</span>
+            </div>
+          </div>
+          <div class="pctbig">80%<small>Aprobados</small></div>
+        </div>
+
+        <!-- Próximos pasos -->
+        <div class="steps">
+          <div class="steps-cap">¿Cómo continúo?</div>
+          <div class="steps-grid">
+            <div class="step">
+              <div class="n">1</div>
+              <div class="t">Elige tu esquema</div>
+              <div class="d">Selecciona el crédito que mejor se ajuste a tus objetivos.</div>
+            </div>
+            <div class="step">
+              <div class="n">2</div>
+              <div class="t">Firma y confirma</div>
+              <div class="d">Firma este documento y devuélvelo a tu asesor asignado.</div>
+            </div>
+            <div class="step">
+              <div class="n">3</div>
+              <div class="t">Recibe tu recurso</div>
+              <div class="d">Coordinamos la dispersión según el calendario acordado.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sign-row">
+          <div class="sign">
+            <div class="ln">Solicitante de crédito</div>
+          </div>
+        </div>
+
+        <div class="privacy">
+          <b>Aviso de privacidad.</b> En apego a la Ley Federal de Protección de Datos Personales
+          en Posesión de los Particulares, sus datos son tratados con estricta confidencialidad.
+          Solución créditicia tiene prohibida su distribución y comercialización. Los montos,
+          plazos y condiciones son informativos y están sujetos a evaluación y documentación.
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

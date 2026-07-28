@@ -21,3 +21,6 @@ CLAUDE.md
 .cursorrules
 .clineRules
 .windsurfrules
+
+# Auto-generated agent rules (personalized per developer)
+.brainsync/agent-rules.md

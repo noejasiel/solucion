@@ -1,0 +1,125 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════
+  HOJA MEMBRETADA — Solución créditicia
+  ════════════════════════════════════════════════════════════════
+  Papelería en blanco para cualquier comunicado: cartas, oficios,
+  constancias, avisos.
+
+  · HOJA 1 → membrete completo (la primera hoja de cualquier escrito)
+  · HOJA 2 → hoja de continuación (encabezado compacto)
+
+  Para escribir: pon el texto dentro de <div class="mb-body">.
+  Al final de este archivo hay un ejemplo de carta ya armado,
+  comentado. Descoméntalo y sustituye el texto.
+
+  Si solo la quieres en blanco para imprimir y escribir a mano o
+  para meterla en Word, déjala tal cual y descarga el PDF.
+  ════════════════════════════════════════════════════════════════
+-->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hoja membretada — Solución créditicia</title>
+    <link rel="stylesheet" href="documento.css" />
+  </head>
+  <body>
+    <button class="download-btn no-print" type="button" onclick="window.print()">
+      <span class="material-symbols-outlined">download</span>
+      Descargar PDF
+    </button>
+
+    <!-- ══════════════ HOJA 1 · MEMBRETE COMPLETO ══════════════ -->
+    <div class="sheet membrete">
+      <img class="watermark" src="assets/logo-primary.png" alt="" aria-hidden="true" />
+      <div class="frame" aria-hidden="true"></div>
+
+      <div class="mb-head">
+        <div class="brand">
+          <img src="assets/logo-primary.png" alt="Solución créditicia" />
+          <div>
+            <div class="name">Solución créditicia</div>
+            <div class="tag">Asesoría crediticia personal y empresarial</div>
+          </div>
+        </div>
+        <div class="aside">
+          <div><b>Ciudad de México</b></div>
+        </div>
+      </div>
+      <div class="mb-rule"></div>
+      <div class="mb-rule"></div>
+
+      <!-- ══════════ ESCRIBE AQUÍ ══════════ -->
+      <div class="mb-body">
+        <!--
+          Zona libre. Ejemplo de carta (quita los comentarios para usarlo):
+
+          <div class="fecha">Ciudad de México, a __ de __________ de 2026</div>
+          <div class="para">Nombre del destinatario</div>
+          <div class="cargo">Cargo o empresa</div>
+          <p>Presente:</p>
+          <p>Por medio de la presente…</p>
+          <p>Sin otro particular, quedo a sus órdenes.</p>
+        -->
+      </div>
+      <!-- ══════════ FIN DE LA ZONA LIBRE ══════════ -->
+
+      <div class="mb-foot">
+        <div>
+          <div class="h">Oficinas</div>
+          Calz. Gral. Mariano Escobedo 476<br />
+          Chapultepec Morales, Anzures<br />
+          Miguel Hidalgo, CP 11590, CDMX
+        </div>
+        <div>
+          <div class="h">Contacto</div>
+          Tel. +52 (55) 93-14-65-04<br />
+          WhatsApp +52 (55) 86-09-87-71
+        </div>
+        <div class="r">
+          <div class="h">Correo</div>
+          informacion@desarrollocrediticiopersonalyempresarial.com<br />
+          Lun a Vie 9:00–18:00 · Sáb 9:00–14:00
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ HOJA 2 · CONTINUACIÓN ══════════ -->
+    <div class="sheet membrete">
+      <img class="watermark" src="assets/logo-primary.png" alt="" aria-hidden="true" />
+      <div class="frame" aria-hidden="true"></div>
+
+      <div class="head-mini">
+        <div class="l">
+          <img src="assets/logo-primary.png" alt="" />
+          <b>Solución créditicia</b>
+        </div>
+        <div class="c">Continuación</div>
+        <div class="r">Hoja 2</div>
+      </div>
+
+      <!-- ══════════ ESCRIBE AQUÍ ══════════ -->
+      <div class="mb-body"></div>
+      <!-- ══════════ FIN DE LA ZONA LIBRE ══════════ -->
+
+      <div class="mb-foot">
+        <div>
+          <div class="h">Oficinas</div>
+          Calz. Gral. Mariano Escobedo 476<br />
+          Chapultepec Morales, Anzures<br />
+          Miguel Hidalgo, CP 11590, CDMX
+        </div>
+        <div>
+          <div class="h">Contacto</div>
+          Tel. +52 (55) 93-14-65-04<br />
+          WhatsApp +52 (55) 86-09-87-71
+        </div>
+        <div class="r">
+          <div class="h">Correo</div>
+          informacion@desarrollocrediticiopersonalyempresarial.com<br />
+          Lun a Vie 9:00–18:00 · Sáb 9:00–14:00
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

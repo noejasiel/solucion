@@ -1,0 +1,489 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════
+  FIRMAS DE CORREO — Solución créditicia
+  ════════════════════════════════════════════════════════════════
+  NO EDITES ESTE ARCHIVO: es la plantilla fuente.
+  El archivo bueno es firma-correo.html (se genera con build.sh).
+
+  Las firmas están hechas con TABLAS y estilos en línea a propósito:
+  Outlook y Gmail ignoran flexbox, grid y las variables CSS.
+  ════════════════════════════════════════════════════════════════
+-->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Firmas de correo — Solución créditicia</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+
+      :root {
+        --navy: #0a1f44;
+        --brass: #c5a059;
+        --ivory: #f8f7f2;
+        --muted: #6a7280;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Inter", Arial, sans-serif;
+        background: #eef1f6;
+        color: #1b1b1e;
+        padding: 40px 20px 70px;
+      }
+      .wrap {
+        max-width: 860px;
+        margin: 0 auto;
+      }
+      .top {
+        text-align: center;
+        margin-bottom: 34px;
+      }
+      .top .kick {
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+      }
+      .top h1 {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 40px;
+        color: var(--navy);
+        margin-top: 10px;
+        font-weight: 700;
+      }
+      .top p {
+        margin-top: 12px;
+        font-size: 14px;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 8px 26px rgba(10, 31, 68, 0.09);
+        margin-bottom: 26px;
+        overflow: hidden;
+      }
+      .card > .hd {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(10, 31, 68, 0.1);
+        background: var(--ivory);
+      }
+      .card > .hd h2 {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 18px;
+        color: var(--navy);
+      }
+      .card > .hd .sub {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+      .btn {
+        border: none;
+        border-radius: 999px;
+        padding: 10px 20px;
+        background: var(--navy);
+        color: #fff;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background 150ms ease;
+      }
+      .btn:hover {
+        background: #1a2f5a;
+      }
+      .btn.ok {
+        background: #1f7a4d;
+      }
+      .stage {
+        padding: 30px 24px;
+        background: #fff;
+      }
+
+      .howto {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 8px 26px rgba(10, 31, 68, 0.09);
+        padding: 26px 28px 28px;
+      }
+      .howto h2 {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 20px;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+      .howto h3 {
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+        margin: 20px 0 8px;
+      }
+      .howto ol,
+      .howto ul {
+        margin-left: 18px;
+        font-size: 13.5px;
+        line-height: 1.75;
+        color: #333;
+      }
+      .howto code {
+        background: var(--ivory);
+        border: 1px solid rgba(10, 31, 68, 0.12);
+        border-radius: 4px;
+        padding: 1px 5px;
+        font-size: 12.5px;
+      }
+      .note {
+        margin-top: 20px;
+        border-left: 3px solid var(--brass);
+        background: rgba(197, 160, 89, 0.08);
+        padding: 12px 14px;
+        font-size: 13px;
+        line-height: 1.65;
+        border-radius: 0 8px 8px 0;
+      }
+      .note b {
+        color: var(--navy);
+      }
+      .fields {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 13px;
+      }
+      .fields th,
+      .fields td {
+        text-align: left;
+        padding: 7px 10px;
+        border-bottom: 1px solid rgba(10, 31, 68, 0.09);
+      }
+      .fields th {
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--brass);
+      }
+      .fields td:first-child {
+        font-weight: 600;
+        color: var(--navy);
+        width: 34%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top">
+        <div class="kick">Identidad de correo</div>
+        <h1>Firmas de correo</h1>
+        <p>
+          Dos versiones listas para pegar en Gmail, Outlook o Apple Mail.<br />
+          Los datos de la persona son <b>de ejemplo</b>: cámbialos por los reales antes de usarla.
+        </p>
+      </div>
+
+      <!-- ══════════════ VARIANTE A · COMPLETA ══════════════ -->
+      <div class="card">
+        <div class="hd">
+          <div>
+            <h2>Firma completa</h2>
+            <div class="sub">Para el primer correo de una conversación</div>
+          </div>
+          <button class="btn" data-copy="firma-a">Copiar firma</button>
+        </div>
+        <div class="stage">
+          <div id="firma-a">
+            <!-- ══════ INICIA FIRMA A ══════ -->
+            <table
+              cellpadding="0"
+              cellspacing="0"
+              border="0"
+              style="
+                border-collapse: collapse;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #1b1b1e;
+              "
+            >
+              <tr>
+                <td style="vertical-align: top; padding: 0 18px 0 0">
+                  <img
+                    src="__LOGO__"
+                    width="78"
+                    height="78"
+                    alt="Solución créditicia"
+                    style="display: block; border: 0; width: 78px; height: 78px"
+                  />
+                </td>
+                <td
+                  style="
+                    vertical-align: top;
+                    padding: 0 0 0 18px;
+                    border-left: 2px solid #c5a059;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: Georgia, 'Times New Roman', serif;
+                      font-size: 17px;
+                      font-weight: bold;
+                      color: #0a1f44;
+                      line-height: 1.25;
+                    "
+                  >
+                    Mariana Robles Cárdenas
+                  </div>
+                  <div
+                    style="
+                      font-size: 10px;
+                      letter-spacing: 1.4px;
+                      text-transform: uppercase;
+                      color: #c5a059;
+                      font-weight: bold;
+                      padding-top: 4px;
+                    "
+                  >
+                    Asesora de Crédito Senior
+                  </div>
+                  <div
+                    style="
+                      font-size: 12px;
+                      font-weight: bold;
+                      color: #0a1f44;
+                      padding-top: 9px;
+                    "
+                  >
+                    Solución créditicia
+                  </div>
+                  <div style="font-size: 11.5px; color: #4a5261; padding-top: 7px; line-height: 1.7">
+                    Tel.
+                    <a href="tel:+525593146504" style="color: #4a5261; text-decoration: none"
+                      >+52 (55) 93-14-65-04</a
+                    >
+                    &nbsp;·&nbsp; Ext. 108<br />
+                    Cel.
+                    <a href="tel:+525555551234" style="color: #4a5261; text-decoration: none"
+                      >+52 (55) 5555-1234</a
+                    ><br />
+                    <a
+                      href="mailto:mariana.robles@desarrollocrediticiopersonalyempresarial.com"
+                      style="color: #0a1f44; text-decoration: none; font-weight: bold"
+                      >mariana.robles@desarrollocrediticiopersonalyempresarial.com</a
+                    >
+                  </div>
+                  <div style="font-size: 11px; color: #6a7280; padding-top: 7px; line-height: 1.6">
+                    Calz. Gral. Mariano Escobedo 476, Chapultepec Morales,<br />
+                    Anzures, Miguel Hidalgo, CP 11590, Ciudad de México
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="padding: 14px 0 0 0">
+                  <div style="border-top: 1px solid #dfe3ea; padding-top: 9px">
+                    <div style="font-size: 9px; color: #98a0ae; line-height: 1.55">
+                      Este mensaje y sus anexos son confidenciales y de uso exclusivo del
+                      destinatario. Si lo recibió por error, notifíquelo al remitente y elimínelo.
+                      La información sobre montos, plazos y condiciones es orientativa y está
+                      sujeta a evaluación, documentación y políticas de cada institución.
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <!-- ══════ TERMINA FIRMA A ══════ -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════ VARIANTE B · COMPACTA ══════════════ -->
+      <div class="card">
+        <div class="hd">
+          <div>
+            <h2>Firma corta</h2>
+            <div class="sub">Para respuestas y cadenas largas</div>
+          </div>
+          <button class="btn" data-copy="firma-b">Copiar firma</button>
+        </div>
+        <div class="stage">
+          <div id="firma-b">
+            <!-- ══════ INICIA FIRMA B ══════ -->
+            <table
+              cellpadding="0"
+              cellspacing="0"
+              border="0"
+              style="
+                border-collapse: collapse;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #1b1b1e;
+              "
+            >
+              <tr>
+                <td style="vertical-align: middle; padding: 0 13px 0 0">
+                  <img
+                    src="__LOGO__"
+                    width="44"
+                    height="44"
+                    alt="Solución créditicia"
+                    style="display: block; border: 0; width: 44px; height: 44px"
+                  />
+                </td>
+                <td
+                  style="
+                    vertical-align: middle;
+                    padding: 0 0 0 13px;
+                    border-left: 2px solid #c5a059;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: Georgia, 'Times New Roman', serif;
+                      font-size: 14px;
+                      font-weight: bold;
+                      color: #0a1f44;
+                      line-height: 1.3;
+                    "
+                  >
+                    Mariana Robles Cárdenas
+                    <span
+                      style="
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 9px;
+                        letter-spacing: 1.2px;
+                        text-transform: uppercase;
+                        color: #c5a059;
+                        font-weight: bold;
+                      "
+                      >&nbsp;·&nbsp; Solución créditicia</span
+                    >
+                  </div>
+                  <div style="font-size: 11px; color: #4a5261; padding-top: 4px">
+                    Asesora de Crédito Senior &nbsp;·&nbsp;
+                    <a href="tel:+525555551234" style="color: #4a5261; text-decoration: none"
+                      >+52 (55) 5555-1234</a
+                    >
+                    &nbsp;·&nbsp;
+                    <a
+                      href="mailto:mariana.robles@desarrollocrediticiopersonalyempresarial.com"
+                      style="color: #0a1f44; text-decoration: none; font-weight: bold"
+                      >Escríbeme</a
+                    >
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <!-- ══════ TERMINA FIRMA B ══════ -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════ INSTRUCCIONES ══════════════ -->
+      <div class="howto">
+        <h2>Cómo instalarla</h2>
+
+        <h3>Gmail</h3>
+        <ol>
+          <li>Da clic en <b>Copiar firma</b> aquí arriba.</li>
+          <li>Entra a Gmail → engrane → <code>Ver toda la configuración</code>.</li>
+          <li>Baja hasta <b>Firma</b> → <code>Crear nueva</code> y ponle un nombre.</li>
+          <li>Pega dentro del recuadro con <code>Cmd + V</code> (Mac) o <code>Ctrl + V</code>.</li>
+          <li>Abajo elige la firma para <b>correos nuevos</b> y para <b>respuestas</b>.</li>
+          <li>Hasta el final de la página: <code>Guardar cambios</code>.</li>
+        </ol>
+
+        <h3>Outlook (escritorio)</h3>
+        <ol>
+          <li>Copia la firma con el botón.</li>
+          <li>Outlook → <code>Archivo</code> → <code>Opciones</code> → <code>Correo</code> → <code>Firmas…</code></li>
+          <li><code>Nueva</code>, ponle nombre y pega en el cuadro de edición.</li>
+          <li>Asigna la firma a tu cuenta en <b>Mensajes nuevos</b> y <b>Respuestas</b>.</li>
+        </ol>
+
+        <h3>Outlook web y Apple Mail</h3>
+        <ul>
+          <li><b>Outlook web:</b> engrane → <code>Correo</code> → <code>Redactar y responder</code> → pega en Firma.</li>
+          <li><b>Apple Mail:</b> <code>Mail</code> → <code>Ajustes</code> → <code>Firmas</code>, crea una y pega. Desmarca <b>"Usar siempre el tipo de letra de mensaje predeterminado"</b>, si no, se pierde el formato.</li>
+        </ul>
+
+        <h3>Qué cambiar por cada persona</h3>
+        <table class="fields">
+          <tr>
+            <th>Dato</th>
+            <th>Ejemplo que trae ahora</th>
+          </tr>
+          <tr>
+            <td>Nombre</td>
+            <td>Mariana Robles Cárdenas</td>
+          </tr>
+          <tr>
+            <td>Puesto</td>
+            <td>Asesora de Crédito Senior</td>
+          </tr>
+          <tr>
+            <td>Extensión</td>
+            <td>Ext. 108</td>
+          </tr>
+          <tr>
+            <td>Celular</td>
+            <td>+52 (55) 5555-1234</td>
+          </tr>
+          <tr>
+            <td>Correo</td>
+            <td>mariana.robles@desarrollocrediticiopersonalyempresarial.com</td>
+          </tr>
+        </table>
+
+        <div class="note">
+          <b>El teléfono de oficina, la dirección y el aviso de confidencialidad son iguales para
+          todos</b> — esos no se tocan. Si quieres cambiarlos, edítalos una vez en
+          <code>firma-correo.template.html</code> y vuelve a generar el archivo.
+        </div>
+
+        <div class="note">
+          <b>Sobre el logo.</b> Va incrustado en el archivo, así que al copiar y pegar el cliente de
+          correo se queda con su propia copia y siempre se ve. Si algún día prefieres que apunte a
+          una liga (pesa menos en cada correo), súbelo a tu sitio y cambia el
+          <code>src</code> de las dos imágenes por esa URL.
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll("[data-copy]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var nodo = document.getElementById(btn.getAttribute("data-copy"));
+          var sel = window.getSelection();
+          var rango = document.createRange();
+          rango.selectNodeContents(nodo);
+          sel.removeAllRanges();
+          sel.addRange(rango);
+          var ok = false;
+          try {
+            ok = document.execCommand("copy");
+          } catch (e) {
+            ok = false;
+          }
+          sel.removeAllRanges();
+          var textoOriginal = btn.textContent;
+          btn.textContent = ok ? "¡Copiada!" : "Selecciónala y copia";
+          btn.classList.toggle("ok", ok);
+          setTimeout(function () {
+            btn.textContent = textoOriginal;
+            btn.classList.remove("ok");
+          }, 2200);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud Crédito al Consumo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            margin: 0 auto;
+            max-width: 900px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .instructions {
+            font-size: 10px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        fieldset {
+            border: 1px solid #000;
+            margin-bottom: 10px;
+            padding: 8px 10px;
+        }
+        legend {
+            font-weight: bold;
+            background-color: #eee;
+            padding: 2px 8px;
+            border: 1px solid #000;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+        .col {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 100px;
+        }
+        .col-auto {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            font-size: 9px;
+            margin-bottom: 2px;
+            color: #111;
+        }
+        input[type="text"], input[type="number"], input[type="email"] {
+            padding: 4px;
+            border: 1px solid #777;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 11px;
+            height: 24px;
+        }
+        /* Clase para simular los recuadros separados del RFC/Homoclave */
+        .char-boxes {
+            letter-spacing: 4px;
+            font-family: monospace;
+        }
+        .date-group {
+            display: flex;
+            gap: 3px;
+        }
+        .date-group input {
+            width: 33%;
+            text-align: center;
+        }
+        .date-group-labels {
+            display: flex;
+            gap: 3px;
+            font-size: 8px;
+            text-align: center;
+            margin-top: 2px;
+        }
+        .date-group-labels span {
+            width: 33%;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            height: 24px;
+            gap: 5px;
+            font-size: 11px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+        table, th, td {
+            border: 1px solid #777;
+        }
+        th, td {
+            padding: 4px;
+            text-align: left;
+            font-size: 10px;
+        }
+        th {
+            background-color: #f5f5f5;
+        }
+        .input-symbol {
+            display: flex;
+            align-items: center;
+            border: 1px solid #777;
+            background: #fff;
+            height: 24px;
+            box-sizing: border-box;
+        }
+        .input-symbol span {
+            padding: 0 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .input-symbol input {
+            border: none;
+            height: 100%;
+            padding: 0;
+            outline: none;
+        }
+        .legal-text {
+            font-size: 10px;
+            text-align: justify;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .signature-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .signature-line {
+            border-top: 1px solid #000;
+            width: 300px;
+            text-align: center;
+            padding-top: 4px;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .page-break {
+            page-break-before: always;
+            margin-top: 30px;
+            border-top: 2px dashed #ccc;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<form action="#" method="POST" id="solicitudCreditoForm">
+
+    <h1>Solicitud Crédito al Consumo</h1>
+    <div class="instructions">
+        INSTRUCCIONES: 1. LLENAR TODOS LOS ESPACIOS DE ESTA SOLICITUD CON LOS DATOS CORRECTOS<br>
+        2. FIRMAR EN TODOS LOS APARTADOS INDICADOS PARA FIRMA DEL CLIENTE
+    </div>
+
+    <fieldset>
+        <legend>Datos por llenar Patrimonio y Desarrollo Crediticio / Registro del Ejecutivo</legend>
+        <div class="row">
+            <div class="col"><label for="cr">CR</label><input type="text" id="cr" name="cr"></div>
+            <div class="col"><label for="plaza">PLAZA</label><input type="text" id="plaza" name="plaza"></div>
+            <div class="col" style="flex: 1.5;"><label for="lugarSolicitud">LUGAR DE SOLICITUD</label><input type="text" id="lugarSolicitud" name="lugarSolicitud"></div>
+            <div class="col"><label for="fechaSolicitud">FECHA DE SOLICITUD</label><input type="text" id="fechaSolicitud" name="fechaSolicitud"></div>
+            <div class="col"><label for="domiciliaNomina">DOMICILIA NOMINA</label><input type="text" id="domiciliaNomina" name="domiciliaNomina"></div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Datos Personales</legend>
+        <div class="row">
+            <div class="col"><label for="nombre">NOMBRE(S)</label><input type="text" id="nombre" name="nombre"></div>
+            <div class="col"><label for="apellidoPaterno">APELLIDO PATERNO</label><input type="text" id="apellidoPaterno" name="apellidoPaterno"></div>
+            <div class="col"><label for="apellidoMaterno">APELLIDO MATERNO</label><input type="text" id="apellidoMaterno" name="apellidoMaterno"></div>
+        </div>
+        <div class="row">
+            <div class="col" style="flex: 1.2;">
+                <label for="rfc">RFC</label>
+                <input type="text" id="rfc" name="rfc" class="char-boxes">
+            </div>
+            <div class="col">
+                <label for="homoclave">HOMOCLAVE</label>
+                <input type="text" id="homoclave" name="homoclave" class="char-boxes">
+            </div>
+            <div class="col" style="flex: 1.2;">
+                <label>FECHA DE NACIMIENTO</label>
+                <div class="date-group">
+                    <input type="text" id="fechaNacimientoDia" name="fechaNacimientoDia">
+                    <input type="text" id="fechaNacimientoMes" name="fechaNacimientoMes">
+                    <input type="text" id="fechaNacimientoAnio" name="fechaNacimientoAnio">
+                </div>
+                <div class="date-group-labels"><span>DIA</span><span>MES</span><span>ANO</span></div>
+            </div>
+            <div class="col" style="flex: 1.5;"><label for="curp">CURP</label><input type="text" id="curp" name="curp"></div>
+        </div>
+        <div class="row">
+            <div class="col"><label for="estadoCivil">ESTADO CIVIL:</label><input type="text" id="estadoCivil" name="estadoCivil"></div>
+            <div class="col"><label for="sexo">SEXO:</label><input type="text" id="sexo" name="sexo"></div>
+            <div class="col"><label for="identificacion">IDENTIFICACIÓN:</label><input type="text" id="identificacion" name="identificacion"></div>
+            <div class="col" style="flex: 1.2;"><label for="numeroIdentificacion">NÚMERO DE IDENTIFICACIÓN</label><input type="text" id="numeroIdentificacion" name="numeroIdentificacion"></div>
+            <div class="col" style="flex: 1.2;">
+                <label>FECHA DE VENCIMIENTO<br>DCT. IDENTIF.</label>
+                <div class="date-group">
+                    <input type="text" id="fechaVencimientoDia" name="fechaVencimientoDia">
+                    <input type="text" id="fechaVencimientoMes" name="fechaVencimientoMes">
+                    <input type="text" id="fechaVencimientoAnio" name="fechaVencimientoAnio">
+                </div>
+                <div class="date-group-labels"><span>DIA</span><span>MES</span><span>ANO</span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="flex: 2.5;"><label for="domicilioActual">DOMICILIO ACTUAL (CALLE)</label><input type="text" id="domicilioActual" name="domicilioActual"></div>
+            <div class="col"><label for="numeroExterior">NUMERO EXTERIOR</label><input type="text" id="numeroExterior" name="numeroExterior"></div>
+            <div class="col"><label for="numeroInterior">NUMERO INTERIOR</label><input type="text" id="numeroInterior" name="numeroInterior"></div>
+            <div class="col" style="flex: 2;"><label for="entreCalles">ENTRE CALLES</label><input type="text" id="entreCalles" name="entreCalles"></div>
+        </div>
+        <div class="row">
+            <div class="col"><label for="nacionalidad">NACIONALIDAD</label><input type="text" id="nacionalidad" name="nacionalidad"></div>
+            <div class="col" style="flex: 1.5;"><label for="colonia">COLONIA</label><input type="text" id="colonia" name="colonia"></div>
+            <div class="col" style="flex: 0.8;"><label for="codigoPostal">CÓDIGO POSTAL</label><input type="text" id="codigoPostal" name="codigoPostal"></div>
+            <div class="col" style="flex: 1.5;"><label for="delegacionMunicipio">DELEGACIÓN O MUNICIPIO</label><input type="text" id="delegacionMunicipio" name="delegacionMunicipio"></div>
+            <div class="col"><label for="estado">ESTADO</label><input type="text" id="estado" name="estado"></div>
+        </div>
+        <div class="row">
+            <div class="col-auto"><label for="claveLadaDomicilio">CLAVE LADA</label><input type="text" id="claveLadaDomicilio" name="claveLadaDomicilio" style="width: 70px;"></div>
+            <div class="col"><label for="telefonoDomicilio">TELÉFONO DOMICILIO</label><input type="text" id="telefonoDomicilio" name="telefonoDomicilio"></div>
+            <div class="col"><label for="telefonoCelular">TELÉFONO CELULAR</label><input type="text" id="telefonoCelular" name="telefonoCelular"></div>
+            <div class="col"><label for="companiaCelular">COMPAÑÍA CELULAR</label><input type="text" id="companiaCelular" name="companiaCelular"></div>
+            <div class="col" style="flex: 2;"><label for="correoElectronico">E-MAIL/CORREO ELECTRÓNICO</label><input type="email" id="correoElectronico" name="correoElectronico"></div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Datos Patrimoniales</legend>
+        <div class="row">
+            <div class="col">
+                <label for="ingresoMensual">INGRESO MENSUAL</label>
+                <div class="input-symbol"><span>$</span><input type="text" id="ingresoMensual" name="ingresoMensual" style="width:100%;"></div>
+            </div>
+            <div class="col">
+                <label for="otrosIngresos">OTROS INGRESOS</label>
+                <div class="input-symbol"><span>$</span><input type="text" id="otrosIngresos" name="otrosIngresos" style="width:100%;"></div>
+            </div>
+            <div class="col" style="flex: 1.5;"><label for="tipoDomicilio">TIPO DE DOMICILIO:</label><input type="text" id="tipoDomicilio" name="tipoDomicilio"></div>
+            <div class="col" style="flex: 1.5;"><label for="antiguedadDomicilio">ANTIGÜEDAD EN EL DOMICILIO</label><input type="text" id="antiguedadDomicilio" name="antiguedadDomicilio"></div>
+        </div>
+        <div class="row">
+            <div class="col"><label for="frecuenciaPago">FRECUENCIA DE PAGO</label><input type="text" id="frecuenciaPago" name="frecuenciaPago"></div>
+            <div class="col" style="flex: 2;"><label for="cuf">CUF (COMPONENTES DE LA<br>UNIDAD FAMILIAR)</label><input type="text" id="cuf" name="cuf"></div>
+            <div class="col" style="flex: 1.5;">
+                <label for="valorPropiedad">VALOR DE LA PROPIEDAD</label>
+                <div class="input-symbol"><span>$</span><input type="text" id="valorPropiedad" name="valorPropiedad" style="width:100%;"></div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Datos Profesionales</legend>
+        <div class="row">
+            <div class="col"><label for="contrato">CONTRATO</label><input type="text" id="contrato" name="contrato"></div>
+            <div class="col"><label for="puestoCargo">PUESTO O CARGO</label><input type="text" id="puestoCargo" name="puestoCargo"></div>
+            <div class="col"><label for="profesion">PROFESION</label><input type="text" id="profesion" name="profesion"></div>
+            <div class="col" style="flex: 1.5;"><label for="actividadEmpresa">ACTIVIDAD DE LA EMPRESA<br>LABORAL</label><input type="text" id="actividadEmpresa" name="actividadEmpresa"></div>
+        </div>
+        <div class="row">
+            <div class="col" style="flex: 2.5;"><label for="nombreEmpresa">NOMBRE DE LA EMPRESA DONDE TRABAJA</label><input type="text" id="nombreEmpresa" name="nombreEmpresa"></div>
+            <div class="col" style="flex: 1.5;"><label for="numeroEmpresaDispersora">NUMERO DE EMPRESA DISPERSORA</label><input type="text" id="numeroEmpresaDispersora" name="numeroEmpresaDispersora"></div>
+            <div class="col" style="flex: 1.2;">
+                <label>ANTIGÜEDAD EN EL EMPLEO</label>
+                <div class="date-group">
+                    <input type="text" id="antiguedadEmpleoDia" name="antiguedadEmpleoDia">
+                    <input type="text" id="antiguedadEmpleoMes" name="antiguedadEmpleoMes">
+                    <input type="text" id="antiguedadEmpleoAnio" name="antiguedadEmpleoAnio">
+                </div>
+                <div class="date-group-labels"><span>DIA</span><span>MES</span><span>ANO</span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="flex: 2.5;"><label for="domicilioEmpresa">DOMICILIO (CALLE)</label><input type="text" id="domicilioEmpresa" name="domicilioEmpresa"></div>
+            <div class="col"><label for="numeroExteriorEmpresa">NUMERO EXTERIOR</label><input type="text" id="numeroExteriorEmpresa" name="numeroExteriorEmpresa"></div>
+            <div class="col"><label for="numeroInteriorEmpresa">NUMERO INTERIOR</label><input type="text" id="numeroInteriorEmpresa" name="numeroInteriorEmpresa"></div>
+        </div>
+        <div class="row">
+            <div class="col" style="flex: 1.5;"><label for="coloniaEmpresa">COLONIA</label><input type="text" id="coloniaEmpresa" name="coloniaEmpresa"></div>
+            <div class="col" style="flex: 0.8;"><label for="codigoPostalEmpresa">CÓDIGO POSTAL</label><input type="text" id="codigoPostalEmpresa" name="codigoPostalEmpresa"></div>
+            <div class="col" style="flex: 1.5;"><label for="delegacionMunicipioEmpresa">DELEGACIÓN O MUNICIPIO</label><input type="text" id="delegacionMunicipioEmpresa" name="delegacionMunicipioEmpresa"></div>
+            <div class="col"><label for="estadoEmpresa">ESTADO</label><input type="text" id="estadoEmpresa" name="estadoEmpresa"></div>
+        </div>
+        <div class="row">
+            <div class="col-auto"><label for="claveLadaOficina">CLAVE LADA</label><input type="text" id="claveLadaOficina" name="claveLadaOficina" style="width: 70px;"></div>
+            <div class="col" style="flex: 1.5;"><label for="telefonoOficina">TELÉFONO DE OFICINA</label><input type="text" id="telefonoOficina" name="telefonoOficina"></div>
+            <div class="col-auto"><label for="extOficina">EXT.</label><input type="text" id="extOficina" name="extOficina" style="width: 70px;"></div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Referencias Personales</legend>
+        <label>FAMILIARES O AMIGOS QUE NO VIVEN CONMIGO</label>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 5%; border:none; background:transparent;"></th>
+                    <th style="width: 45%;">NOMBRE</th>
+                    <th style="width: 25%;">PARENTESCO</th>
+                    <th style="width: 25%;">TELÉFONO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border:none; text-align:right; font-weight:bold;">1.</td>
+                    <td><input type="text" id="referencia1Nombre" name="referencia1Nombre" style="border:none; background:transparent; width:100%;"></td>
+                    <td><input type="text" id="referencia1Parentesco" name="referencia1Parentesco" style="border:none; background:transparent; width:100%;"></td>
+                    <td><input type="text" id="referencia1Telefono" name="referencia1Telefono" style="border:none; background:transparent; width:100%;"></td>
+                </tr>
+                <tr>
+                    <td style="border:none; text-align:right; font-weight:bold;">2.</td>
+                    <td><input type="text" id="referencia2Nombre" name="referencia2Nombre" style="border:none; background:transparent; width:100%;"></td>
+                    <td><input type="text" id="referencia2Parentesco" name="referencia2Parentesco" style="border:none; background:transparent; width:100%;"></td>
+                    <td><input type="text" id="referencia2Telefono" name="referencia2Telefono" style="border:none; background:transparent; width:100%;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+    <fieldset>
+        <legend>Informacion Sobre Personas Politicamente Expuestas</legend>
+        <div class="row">
+            <div class="col" style="flex: 1.5;">
+                <label>¿USTED ES O HA SIDO UNA PERSONA<br>POLÍTICAMENTE EXPUESTA (PPE)?</label>
+                <div class="checkbox-group">
+                    <input type="radio" id="ppeUstedSi" name="ppeUsted" value="si"> <label for="ppeUstedSi">Sí</label>
+                    <input type="radio" id="ppeUstedNo" name="ppeUsted" value="no" style="margin-left: 10px;"> <label for="ppeUstedNo">No</label>
+                </div>
+            </div>
+            <div class="col" style="flex: 2;"><label for="ppeUstedFuncion">¿QUÉ FUNCIÓN DESEMPEÑA O HA DESEMPEÑADO?</label><input type="text" id="ppeUstedFuncion" name="ppeUstedFuncion"></div>
+        </div>
+        <div class="row">
+            <div class="col" style="flex: 1.5;">
+                <label>¿TIENE PARENTESCO CON ALGUIEN QUE ES O<br>HAYA SIDO UNA PPE?</label>
+                <div class="checkbox-group">
+                    <input type="radio" id="ppeFamiliarSi" name="ppeFamiliar" value="si"> <label for="ppeFamiliarSi">Sí</label>
+                    <input type="radio" id="ppeFamiliarNo" name="ppeFamiliar" value="no" style="margin-left: 10px;"> <label for="ppeFamiliarNo">No</label>
+                </div>
+            </div>
+            <div class="col" style="flex: 2;"><label for="ppeFamiliarParentesco">¿QUÉ PARENTESCO?</label><input type="text" id="ppeFamiliarParentesco" name="ppeFamiliarParentesco"></div>
+        </div>
+        <div class="row">
+            <div class="col" style="flex: 1.5;"><label for="ppeFamiliarNombre">NOMBRE DE LA PPE</label><input type="text" id="ppeFamiliarNombre" name="ppeFamiliarNombre"></div>
+            <div class="col" style="flex: 2;"><label for="ppeFamiliarFuncion">¿QUÉ FUNCIÓN DESEMPEÑA O HA DESEMPEÑADO LA PPE CON LA QUE TIENE PARENTESCO?</label><input type="text" id="ppeFamiliarFuncion" name="ppeFamiliarFuncion"></div>
+        </div>
+    </fieldset>
+
+    <div class="page-break"></div>
+
+    <h1>Solicitud Crédito al Consumo</h1>
+    <fieldset>
+        <legend>Datos Personales</legend>
+        <div class="row">
+            <div class="col"><label for="nombreP2">NOMBRE(S)</label><input type="text" id="nombreP2" name="nombreP2"></div>
+            <div class="col"><label for="apellidoPaternoP2">APELLIDO PATERNO</label><input type="text" id="apellidoPaternoP2" name="apellidoPaternoP2"></div>
+            <div class="col"><label for="apellidoMaternoP2">APELLIDO MATERNO</label><input type="text" id="apellidoMaternoP2" name="apellidoMaternoP2"></div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Autorizacion para Consultas de Historial Crediticio</legend>
+        <div class="legal-text">
+            Por este conducto autorizo expresa e irrevocablemente a PATRIMONIO Y DESARROLLO CREDITICIO, institucion de banca multiple, PATRIMONIO Y DESARROLLO CREDITICIO, para que se solicite a las(s) sociedad(es) de informacion crediticia nacional(es) o extranjera(s) o extranjera(s) que considere necesaria(s), toda la informacion relativa a mi historial crediticio, asi como para que realice revisiones periodicas y proporcione informacion sobre dicho historial.
+            <br><br>
+            Esta autorixacion tendra una vigencia de tres años o en tanto exista una relacion juridica con PATRIMONIO Y DESARROLLO CREDITICIO. Declaro que conozco plenamente: la naturaleza y alcance de la informainformación que se solicitara; las consecuencias y el alcance de la informacion que la(s) sociedad(es) de informacion crediticia le(s) proporcionara (n) a PATRIMONIO Y DESARROLLO CREDITICIO; que dicha institucion podra realizar consultas periodicas de mi historial crediticio y el uso que esta hara de tal informacion
+        </div>
+        <div class="signature-section">
+            <div class="signature-line">NOMBRE COMPLETO Y FIRMA DE "EL CLIENTE"</div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Solicitud de Credito</legend>
+        <div class="legal-text">
+            El cliente manifiesta que previo a su firma PATRIMONIO Y DESARROLLO CREDITICIO, Institucion de banca multiple, hizo de su conocimiento las caracteristicas y clausulas de credito a contratar
+        </div>
+        <div class="signature-section">
+            <div class="signature-line">NOMBRE COMPLETO Y FIRMA DE "EL CLIENTE"</div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Autorizacion para Efectos Publicitarios</legend>
+        <div class="legal-text">
+            En mi caracter de Cliente, autorizo a PATRIMONIO Y DESARROLLO CREDITICIO, Institucion de banca multiple, para que proporcione a terceras personas fisicas o morales la informacion que derive dedla presente informacion que derive de la prsente operacion, con el proposito de que se utilice con fines mercadotecnicos o publicitarios, No obstante lo anterior, el cliente podra modificar su autorizacion, manifestandolo por escrito.
+        </div>
+        <div class="signature-section">
+            <div class="signature-line">NOMBRE COMPLETO Y FIRMA DE "EL CLIENTE"</div>
+        </div>
+    </fieldset>
+
+</form>
+
+</body>
+</html>

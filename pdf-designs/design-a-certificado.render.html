@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Crédito Aprobado — Certificado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #0a1f44;
+        --navy-deep: #071634;
+        --brass: #c5a059;
+        --brass-light: #e8c176;
+        --ivory: #f8f7f2;
+        --ink: #1b1b1e;
+        --muted: #5b6472;
+        --line: rgba(10, 31, 68, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      @page {
+        size: letter;
+        margin: 0;
+      }
+
+      body {
+        font-family: "Inter", Arial, sans-serif;
+        color: var(--ink);
+        background: #dfe3ea;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .sheet {
+        position: relative;
+        width: 8.5in;
+        height: 11in;
+        margin: 0 auto;
+        background: #ffffff;
+        overflow: hidden;
+      }
+
+      /* Marco dorado fino en todo el borde */
+      .frame {
+        position: absolute;
+        inset: 0.28in;
+        border: 1.5px solid var(--brass);
+        pointer-events: none;
+      }
+      .frame::before {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        border: 0.75px solid rgba(197, 160, 89, 0.45);
+      }
+
+      /* Marca de agua sutil */
+      .watermark {
+        position: absolute;
+        top: 54%;
+        left: 50%;
+        width: 4.2in;
+        transform: translate(-50%, -50%);
+        opacity: 0.04;
+        pointer-events: none;
+      }
+
+      .content {
+        position: absolute;
+        inset: 0.28in;
+        padding: 0.34in 0.42in;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ---- Encabezado ---- */
+      .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--line);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand img {
+        width: 52px;
+        height: 52px;
+        object-fit: contain;
+      }
+      .brand .name {
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 800;
+        font-size: 19px;
+        color: var(--navy);
+        line-height: 1.05;
+        letter-spacing: 0.01em;
+      }
+      .brand .sub {
+        font-size: 8.5px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 600;
+        margin-top: 3px;
+      }
+      .head-right {
+        text-align: right;
+      }
+      .head-right .kind {
+        font-size: 9px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .head-right .folio {
+        font-family: "Playfair Display", serif;
+        font-size: 13px;
+        color: var(--navy);
+        margin-top: 4px;
+      }
+
+      /* ---- Título ---- */
+      .title-block {
+        text-align: center;
+        margin-top: 22px;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 9.5px;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+      }
+      .eyebrow::before,
+      .eyebrow::after {
+        content: "";
+        width: 26px;
+        height: 1px;
+        background: var(--brass);
+      }
+      .title {
+        font-family: "Playfair Display", serif;
+        font-weight: 800;
+        font-size: 40px;
+        color: var(--navy);
+        letter-spacing: 0.01em;
+        margin: 8px 0 6px;
+      }
+      .title .rule {
+        display: block;
+        width: 74px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--brass), var(--brass-light));
+        margin: 6px auto 0;
+      }
+      .lede {
+        max-width: 5.3in;
+        margin: 12px auto 0;
+        font-size: 11px;
+        line-height: 1.55;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      /* ---- Datos del cliente ---- */
+      .client {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        margin-top: 20px;
+        border: 1px solid var(--line);
+      }
+      .client .cell {
+        padding: 11px 14px;
+        border-right: 1px solid var(--line);
+      }
+      .client .cell:last-child {
+        border-right: 0;
+      }
+      .client .lbl {
+        font-size: 8px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+      }
+      .client .val {
+        margin-top: 7px;
+        height: 15px;
+        border-bottom: 1px dotted rgba(10, 31, 68, 0.35);
+      }
+
+      /* ---- Tabla de esquemas ---- */
+      .schemes {
+        margin-top: 22px;
+      }
+      .schemes .cap {
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 700;
+        margin-bottom: 9px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      thead th {
+        background: var(--navy);
+        color: #fff;
+        font-size: 8.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 600;
+        padding: 10px 12px;
+        text-align: right;
+      }
+      thead th:first-child {
+        text-align: left;
+        border-radius: 0;
+      }
+      tbody td {
+        padding: 13px 12px;
+        font-size: 11px;
+        text-align: right;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink);
+      }
+      tbody td:first-child {
+        text-align: left;
+        font-weight: 600;
+        color: var(--navy);
+      }
+      tbody tr:nth-child(even) {
+        background: rgba(248, 247, 242, 0.6);
+      }
+      tbody td .mono {
+        font-variant-numeric: tabular-nums;
+      }
+      .tag {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--brass);
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+      .tag.p2 {
+        background: rgba(197, 160, 89, 0.6);
+      }
+      .tag.p3 {
+        background: rgba(197, 160, 89, 0.35);
+      }
+
+      /* ---- Aprobación: donut plano ---- */
+      .approval {
+        margin-top: 22px;
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        gap: 22px;
+        align-items: center;
+        padding: 16px 20px;
+        background: var(--ivory);
+        border: 1px solid rgba(197, 160, 89, 0.3);
+      }
+      .donut {
+        width: 118px;
+        height: 118px;
+        border-radius: 50%;
+        background: conic-gradient(
+          var(--brass) 0turn 0.8turn,
+          rgba(10, 31, 68, 0.1) 0.8turn 1turn
+        );
+        display: grid;
+        place-items: center;
+        margin: 0 auto;
+      }
+      .donut .hole {
+        width: 82px;
+        height: 82px;
+        border-radius: 50%;
+        background: var(--ivory);
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+      .donut .pct {
+        font-family: "Playfair Display", serif;
+        font-weight: 800;
+        font-size: 27px;
+        color: var(--navy);
+        line-height: 1;
+      }
+      .donut .pctl {
+        font-size: 7px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brass);
+        margin-top: 2px;
+      }
+      .approval .note .h {
+        font-family: "Playfair Display", serif;
+        font-size: 15px;
+        color: var(--navy);
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+      .approval .note .p {
+        font-size: 10px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      /* ---- Firmas ---- */
+      .signs {
+        margin-top: auto;
+        padding-top: 22px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+      }
+      .sign {
+        text-align: center;
+      }
+      .sign .seal {
+        width: 46px;
+        height: 46px;
+        margin: 0 auto 8px;
+        object-fit: contain;
+        opacity: 0.9;
+      }
+      .sign .ln {
+        border-top: 1.2px solid var(--navy);
+        padding-top: 7px;
+        font-size: 9.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 600;
+      }
+
+      /* ---- Aviso ---- */
+      .privacy {
+        margin-top: 16px;
+        padding-top: 11px;
+        border-top: 1px solid var(--line);
+        font-size: 7px;
+        line-height: 1.45;
+        color: var(--muted);
+        text-align: justify;
+      }
+      .privacy b {
+        color: var(--navy);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 7.5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sheet">
+      <img class="watermark" src="file:///Users/arturmac/Solucion%20crediticia/public/brand/logo-primary.png" alt="" />
+      <div class="frame"></div>
+      <div class="content">
+        <!-- Encabezado -->
+        <div class="head">
+          <div class="brand">
+            <img src="file:///Users/arturmac/Solucion%20crediticia/public/brand/logo-primary.png" alt="Solución créditicia" />
+            <div>
+              <div class="name">Solución créditicia</div>
+              <div class="sub">Personal y empresarial</div>
+            </div>
+          </div>
+          <div class="head-right">
+            <div class="kind">Inversión</div>
+            <div class="folio">México, ____ de __________ del 2026</div>
+          </div>
+        </div>
+
+        <!-- Título -->
+        <div class="title-block">
+          <div class="eyebrow">Resolución de financiamiento</div>
+          <h1 class="title">Crédito Aprobado<span class="rule"></span></h1>
+          <p class="lede">
+            Nos complace informarle que el estudio realizado a su documentación ha sido
+            <strong>satisfactorio</strong>. Con base en su análisis socioeconómico, presentamos
+            los siguientes esquemas de financiamiento.
+          </p>
+        </div>
+
+        <!-- Datos cliente -->
+        <div class="client">
+          <div class="cell">
+            <div class="lbl">Nombre del cliente</div>
+            <div class="val"></div>
+          </div>
+          <div class="cell">
+            <div class="lbl">Número de contrato</div>
+            <div class="val"></div>
+          </div>
+          <div class="cell">
+            <div class="lbl">Inicio de pago</div>
+            <div class="val"></div>
+          </div>
+        </div>
+
+        <!-- Esquemas -->
+        <div class="schemes">
+          <div class="cap">Esquemas de financiamiento</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Monto</th>
+                <th>Plazo</th>
+                <th>Aportación</th>
+                <th>Respaldo económico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tag"></span>Crédito Principal</td>
+                <td class="mono">$40,000.00</td>
+                <td>72 meses</td>
+                <td class="mono">$1,142.04</td>
+                <td class="mono">$4,200.00</td>
+              </tr>
+              <tr>
+                <td><span class="tag p2"></span>Crédito Secundario</td>
+                <td class="mono">$40,000.00</td>
+                <td>42 meses</td>
+                <td class="mono">$1,252.28</td>
+                <td class="mono">$3,300.00</td>
+              </tr>
+              <tr>
+                <td><span class="tag p3"></span>Crédito Opcional</td>
+                <td class="mono">$40,000.00</td>
+                <td>24 meses</td>
+                <td class="mono">$2,075.11</td>
+                <td class="mono">$2,200.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Aprobación -->
+        <div class="approval">
+          <div class="donut">
+            <div class="hole">
+              <div>
+                <div class="pct">80%</div>
+                <div class="pctl">Aprobados</div>
+              </div>
+            </div>
+          </div>
+          <div class="note">
+            <div class="h">8 de cada 10 solicitantes obtienen aprobación</div>
+            <div class="p">
+              Nuestro modelo de análisis prioriza la viabilidad real de cada perfil. La mayoría
+              de quienes completan su estudio socioeconómico reciben una resolución favorable
+              como la presente.
+            </div>
+          </div>
+        </div>
+
+        <!-- Firmas -->
+        <div class="signs">
+          <div class="sign">
+            <img class="seal" src="file:///Users/arturmac/Solucion%20crediticia/public/brand/logo-primary.png" alt="" />
+            <div class="ln">Solución créditicia</div>
+          </div>
+          <div class="sign">
+            <div style="height: 46px; margin-bottom: 8px"></div>
+            <div class="ln">Solicitante de crédito</div>
+          </div>
+        </div>
+
+        <!-- Aviso -->
+        <div class="privacy">
+          <b>Aviso de privacidad.</b> En apego a la Ley Federal de Protección de Datos Personales
+          en Posesión de los Particulares, sus datos son tratados con estricta confidencialidad.
+          Solución créditicia tiene prohibida la distribución y comercialización de su información,
+          en cumplimiento con la legislación federal de acceso a la información. Los montos, plazos
+          y condiciones aquí presentados son de carácter informativo y están sujetos a evaluación,
+          documentación y políticas de cada institución.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

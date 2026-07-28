@@ -256,27 +256,34 @@ export const simulatorConfig: SimulatorConfig = {
   rateDefault: 15,
 };
 
-export const contactEmail =
-  "informacion@desarrollocrediticiopersonalyempresarial.com";
+export const contactEmail = "informacion@solucioncrediticia.org";
+
+export const managementEmail = "gerencia@solucioncrediticia.org";
 
 export const contactChannels: ContactChannel[] = [
   {
     icon: "call",
     label: "Línea Directa",
-    value: "+52 (55) 93-14-65-04",
-    href: "tel:+525593146504",
+    value: "+52 (55) 88-00-06-98",
+    href: "tel:+525588000698",
   },
   {
     icon: "chat",
     label: "WhatsApp",
-    value: "+52 (55) 86-09-87-71",
-    href: "https://wa.me/525586098771",
+    value: "+52 (55) 93-13-73-19",
+    href: "https://wa.me/525593137319",
   },
   {
     icon: "mail",
     label: "Correo Electrónico",
     value: contactEmail,
     href: `mailto:${contactEmail}`,
+  },
+  {
+    icon: "mail",
+    label: "Gerencia",
+    value: managementEmail,
+    href: `mailto:${managementEmail}`,
   },
   {
     icon: "location_on",

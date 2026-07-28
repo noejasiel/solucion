@@ -1,0 +1,1620 @@
+/* ============================================================
+   SISTEMA DE DISEÑO — Documentos Solución créditicia
+   No edites este archivo salvo que quieras cambiar el estilo
+   de TODOS los documentos a la vez.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block");
+
+      :root {
+        --navy: #0a1f44;
+        --navy-soft: #1a2f5a;
+        --brass: #c5a059;
+        --brass-light: #e8c176;
+        --ivory: #f8f7f2;
+        --ink: #1b1b1e;
+        --muted: #6a7280;
+        --line: rgba(10, 31, 68, 0.16);
+        --hair: rgba(10, 31, 68, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      @page {
+        size: letter;
+        margin: 0;
+      }
+
+      body {
+        font-family: "Inter", Arial, sans-serif;
+        color: var(--ink);
+        background: #dfe3ea;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "opsz" 24;
+      }
+
+      .sheet {
+        position: relative;
+        width: 8.5in;
+        height: 11in;
+        margin: 0 auto;
+        background: #fff;
+        padding: 0.7in 0.85in;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      /* Fondo de agua del logo */
+      .watermark {
+        position: absolute;
+        top: 53%;
+        left: 50%;
+        width: 4.7in;
+        transform: translate(-50%, -50%);
+        opacity: 0.14;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .sheet > *:not(.watermark):not(.qr-badge):not(.frame) {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Marco dorado alrededor de toda la hoja */
+      .frame {
+        position: absolute;
+        inset: 0.3in;
+        border: 1.3px solid var(--brass);
+        pointer-events: none;
+        z-index: 3;
+      }
+      .frame::before {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        border: 0.6px solid rgba(197, 160, 89, 0.45);
+      }
+
+      /* QR sutil arriba a la derecha */
+      .qr-badge {
+        position: absolute;
+        top: 1.86in;
+        right: 0.9in;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        width: 1.45in;
+      }
+      .qr-badge img {
+        width: 1.45in;
+        height: 1.45in;
+        object-fit: contain;
+        opacity: 1;
+      }
+      .qr-badge span {
+        font-size: 6px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-align: center;
+        line-height: 1.4;
+        font-weight: 600;
+      }
+
+      /* ---- Encabezado ---- */
+      .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .head .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .head .brand img {
+        width: 58px;
+        height: 58px;
+        object-fit: contain;
+      }
+      .head .brand .name {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 19px;
+        color: var(--navy);
+        letter-spacing: 0.02em;
+      }
+      .head .meta {
+        text-align: right;
+        font-size: 8.5px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .head .meta b {
+        color: var(--navy);
+      }
+
+      .topline {
+        height: 1px;
+        background: var(--navy);
+        margin: 16px 0 0;
+      }
+      .thinline {
+        height: 1px;
+        background: var(--hair);
+        margin-top: 4px;
+      }
+
+      /* ---- Título ---- */
+      .kicker {
+        margin-top: 30px;
+        font-size: 9px;
+        letter-spacing: 0.34em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+      }
+      .title {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 48px;
+        color: var(--navy);
+        line-height: 1;
+        margin-top: 10px;
+        letter-spacing: -0.01em;
+      }
+      .lede {
+        margin-top: 16px;
+        font-size: 12px;
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 5.2in;
+      }
+      .lede strong {
+        color: var(--navy);
+      }
+
+      /* ---- Datos en línea ---- */
+      .meta-row {
+        margin-top: 28px;
+        max-width: 5.2in;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .meta-row .m .lbl {
+        font-size: 8px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+      }
+      .meta-row .m .val {
+        margin-top: 10px;
+        height: 15px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      /* ---- Sección tarjetas ---- */
+      .section-cap {
+        margin-top: 34px;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        border-bottom: 2px solid var(--navy);
+        padding-bottom: 8px;
+      }
+      .section-cap h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 15px;
+        color: var(--navy);
+        font-weight: 700;
+      }
+      .section-cap span {
+        font-size: 8px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ---- Tarjetas (del diseño B) ---- */
+      .cards {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .card {
+        position: relative;
+        border-radius: 14px;
+        padding: 15px 20px;
+        display: grid;
+        grid-template-columns: 46px 1fr auto;
+        gap: 16px;
+        align-items: center;
+      }
+      .card.primary {
+        background: linear-gradient(120deg, var(--navy) 0%, var(--navy-soft) 100%);
+        color: #fff;
+        border: 1px solid rgba(197, 160, 89, 0.4);
+      }
+      .card.ghost {
+        border: 1.5px solid transparent;
+        background:
+          linear-gradient(#fff, #fff) padding-box,
+          linear-gradient(
+              135deg,
+              var(--brass) 0%,
+              var(--brass-light) 30%,
+              rgba(197, 160, 89, 0.35) 55%,
+              rgba(10, 31, 68, 0.55) 100%
+            )
+            border-box;
+        box-shadow: 0 6px 16px rgba(10, 31, 68, 0.05);
+      }
+      .card .ic {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+      }
+      .card.primary .ic {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(232, 193, 118, 0.5);
+      }
+      .card.ghost .ic {
+        background: var(--ivory);
+        border: 1px solid rgba(197, 160, 89, 0.25);
+      }
+      .card .ic .material-symbols-outlined {
+        color: var(--brass);
+        font-size: 24px;
+      }
+      .card .info .name {
+        font-family: "Playfair Display", serif;
+        font-size: 17px;
+        font-weight: 700;
+      }
+      .card.ghost .info .name {
+        color: var(--navy);
+      }
+      .card .info .meta {
+        font-size: 10px;
+        margin-top: 6px;
+        display: flex;
+        gap: 20px;
+      }
+      .card.primary .info .meta {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .card.ghost .info .meta {
+        color: var(--muted);
+      }
+      .card .info .meta b {
+        font-weight: 600;
+      }
+      .card.primary .info .meta b {
+        color: var(--brass-light);
+      }
+      .card.ghost .info .meta b {
+        color: var(--navy);
+      }
+      .card .amount {
+        text-align: right;
+      }
+      .card .amount .big {
+        font-family: "Playfair Display", serif;
+        font-size: 23px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+      .card.ghost .amount .big {
+        color: var(--navy);
+      }
+      .card .amount .sm {
+        font-size: 7.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin-top: 2px;
+      }
+      /* Variante para números largos (CLABE, folios de 18 dígitos) */
+      .card .amount .big.clabe {
+        font-size: 17px;
+        letter-spacing: 0.01em;
+      }
+
+      /* ---- Notas breves en tres columnas (documentos de referencia) ---- */
+      .notes {
+        margin-top: 24px;
+        margin-bottom: 18px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      .notes .n {
+        border-left: 2px solid var(--brass);
+        padding-left: 12px;
+      }
+      .notes .n .h {
+        font-size: 8px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 700;
+      }
+      .notes .n .p {
+        margin-top: 6px;
+        font-size: 8.5px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      /* ============================================================
+         BLOQUE "REFERENCIA"
+         Para documentos de UN SOLO dato protagonista (una CLABE, un
+         folio, un número de cuenta). Mismos colores y tipografías que
+         el resto: solo cambia la manera de acomodar la información.
+         ============================================================ */
+
+      /* Panel principal: el dato que el cliente debe usar */
+      .ref-hero {
+        margin-top: 34px;
+        position: relative;
+        border-radius: 16px;
+        padding: 28px 34px 30px;
+        background: linear-gradient(120deg, var(--navy) 0%, var(--navy-soft) 100%);
+        border: 1px solid rgba(197, 160, 89, 0.45);
+        box-shadow: 0 10px 26px rgba(10, 31, 68, 0.14);
+        text-align: center;
+      }
+      /* Institución bancaria, encima de la etiqueta */
+      .ref-hero .bank {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.1;
+        letter-spacing: 0.01em;
+      }
+      .ref-hero .bank + .lbl {
+        margin-top: 9px;
+      }
+      .ref-hero::after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        border: 0.6px solid rgba(232, 193, 118, 0.3);
+        border-radius: 12px;
+        pointer-events: none;
+      }
+      .ref-hero .lbl {
+        font-size: 8.5px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--brass-light);
+        font-weight: 700;
+      }
+      .ref-hero .num {
+        margin-top: 12px;
+        font-family: "Playfair Display", serif;
+        font-weight: 800;
+        font-size: 46px;
+        line-height: 1.05;
+        color: #fff;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.005em;
+      }
+      .ref-hero .sub {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(232, 193, 118, 0.28);
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.72);
+      }
+      .ref-hero .sub b {
+        color: var(--brass-light);
+        font-weight: 700;
+      }
+
+      /* Datos de apoyo, en columnas */
+      .ref-grid {
+        margin-top: 22px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .ref-item {
+        border: 1px solid var(--line);
+        border-top: 2px solid var(--brass);
+        border-radius: 10px;
+        padding: 20px 22px 22px;
+        background: rgba(255, 255, 255, 0.86);
+      }
+      .ref-item .lbl {
+        font-size: 8px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+      }
+      .ref-item .val {
+        margin-top: 10px;
+        font-family: "Playfair Display", serif;
+        font-size: 30px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.1;
+        font-variant-numeric: tabular-nums;
+      }
+      .ref-item .hint {
+        margin-top: 6px;
+        font-size: 8.5px;
+        color: var(--muted);
+      }
+      .ref-item .hint b {
+        color: var(--navy);
+        font-weight: 600;
+      }
+      /* Variante de un solo dato: la tarjeta ocupa todo el ancho */
+      .ref-grid.solo {
+        grid-template-columns: 1fr;
+      }
+      .ref-grid.solo .ref-item {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 28px;
+      }
+      .ref-grid.solo .ref-item .hint {
+        margin-top: 0;
+        padding-bottom: 6px;
+        text-align: right;
+      }
+
+      /* Franja de verificación con el QR */
+      .ref-verify {
+        margin-top: auto;
+        padding-top: 26px;
+        display: grid;
+        grid-template-columns: 1.25in 1fr;
+        gap: 24px;
+        align-items: center;
+        border-top: 1px solid var(--hair);
+      }
+      .ref-verify .qr img {
+        width: 1.25in;
+        height: 1.25in;
+        object-fit: contain;
+        display: block;
+      }
+      .ref-verify .qr span {
+        display: block;
+        margin-top: 6px;
+        font-size: 6px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-align: center;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+      .ref-verify .txt h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 14px;
+        color: var(--navy);
+        font-weight: 700;
+      }
+      .ref-verify .txt p {
+        margin-top: 7px;
+        font-size: 9.5px;
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 4.4in;
+      }
+      .ref-verify .txt p b {
+        color: var(--navy);
+        font-weight: 600;
+      }
+
+      /* ---- Panel de indicadores (dos gráficas) ---- */
+      .stats-row {
+        margin-top: 22px;
+        margin-bottom: 18px;
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr;
+        gap: 28px;
+        align-items: center;
+      }
+      .stats-divider {
+        align-self: stretch;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(197, 160, 89, 0.5),
+          transparent
+        );
+      }
+
+      /* Indicador izquierdo: 80% + barra */
+      .stat {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 20px;
+        align-items: center;
+      }
+      .stat .num {
+        font-family: "Playfair Display", serif;
+        font-size: 56px;
+        font-weight: 800;
+        color: var(--navy);
+        line-height: 0.9;
+      }
+      .stat .num small {
+        font-size: 18px;
+        color: var(--brass);
+      }
+      .stat .bardesc .h {
+        font-size: 10px;
+        color: var(--navy);
+        font-weight: 600;
+        margin-bottom: 9px;
+      }
+      .stat .bar {
+        height: 7px;
+        background: var(--hair);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .stat .bar .fill {
+        width: 80%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--brass), var(--brass-light));
+        border-radius: 999px;
+      }
+      .stat .bardesc .p {
+        font-size: 8.5px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+
+      /* Indicador derecho: preferencia de esquema (dona) */
+      .pref .h {
+        font-size: 10px;
+        color: var(--navy);
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .pref-body {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 18px;
+        align-items: center;
+      }
+      .donut2 {
+        width: 1.05in;
+        height: 1.05in;
+        border-radius: 50%;
+        background: conic-gradient(
+          var(--brass) 0turn 0.6turn,
+          var(--navy) 0.6turn 0.85turn,
+          #9aa6bd 0.85turn 1turn
+        );
+        display: grid;
+        place-items: center;
+      }
+      .donut2 .hole {
+        width: 0.62in;
+        height: 0.62in;
+        border-radius: 50%;
+        background: #fff;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        line-height: 1;
+      }
+      .donut2 .hole b {
+        font-family: "Playfair Display", serif;
+        font-size: 17px;
+        color: var(--navy);
+        font-weight: 800;
+      }
+      .donut2 .hole span {
+        display: block;
+        font-size: 6px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      .legend .li {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 9px;
+        color: var(--navy);
+        margin-bottom: 8px;
+      }
+      .legend .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 2px;
+        flex: 0 0 auto;
+      }
+      .legend .d1 {
+        background: var(--brass);
+      }
+      .legend .d2 {
+        background: var(--navy);
+      }
+      .legend .d3 {
+        background: #9aa6bd;
+      }
+      .legend .li b {
+        margin-left: auto;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+      .pref .cap {
+        font-size: 8.5px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      /* ---- Firmas ---- */
+      .signs {
+        margin-top: auto;
+        padding-top: 34px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 70px;
+      }
+      .sign {
+        position: relative;
+      }
+      .sign .firma {
+        position: absolute;
+        left: 50%;
+        bottom: 3px;
+        transform: translateX(-50%);
+        width: 1.55in;
+        height: auto;
+        opacity: 0.72;
+        /* Firma ligera, sin trazo reforzado */
+        filter: brightness(0);
+        pointer-events: none;
+      }
+      .sign .ln {
+        border-top: 1px solid var(--navy);
+        padding-top: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 600;
+      }
+      .sign .ln img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
+
+      .privacy {
+        margin-top: 20px;
+        font-size: 7px;
+        line-height: 1.5;
+        color: var(--muted);
+        text-align: justify;
+        border-top: 1px solid var(--hair);
+        padding-top: 10px;
+      }
+      .privacy b {
+        color: var(--navy);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      /* Botón de descarga (no se imprime) */
+      .download-btn {
+        position: fixed;
+        bottom: 26px;
+        right: 26px;
+        z-index: 100;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        border: none;
+        border-radius: 999px;
+        padding: 15px 28px;
+        background: var(--navy);
+        color: #fff;
+        font-family: "Inter", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(10, 31, 68, 0.35);
+        transition: background 160ms ease, transform 160ms ease;
+      }
+      .download-btn:hover {
+        background: var(--navy-soft);
+        transform: translateY(-2px);
+      }
+      .download-btn .material-symbols-outlined {
+        font-size: 20px;
+        color: var(--brass-light);
+      }
+
+      /* ============================================================
+         BLOQUE "CONTRATO"
+         Para documentos largos de varias hojas: portada, encabezado
+         compacto por página, cuerpo a dos columnas, carátula de
+         datos, listas de anexos y campos de firma.
+         ============================================================ */
+
+      /* Hoja de contrato: más área útil que la hoja normal */
+      .sheet.contrato {
+        padding: 0.55in 0.62in 0.45in;
+      }
+      .sheet.contrato .watermark {
+        width: 4in;
+        opacity: 0.07;
+      }
+      .sheet + .sheet {
+        margin-top: 26px;
+      }
+
+      /* ---- Encabezado compacto (hojas 2 en adelante) ---- */
+      .head-mini {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid var(--navy);
+        padding-bottom: 6px;
+      }
+      .head-mini .l {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .head-mini .l img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+      }
+      .head-mini .l b {
+        font-family: "Playfair Display", serif;
+        font-size: 11px;
+        color: var(--navy);
+        font-weight: 700;
+      }
+      .head-mini .c {
+        font-size: 7.5px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+      }
+      .head-mini .r {
+        font-size: 7.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      /* ---- Pie compacto ---- */
+      .foot-mini {
+        margin-top: auto;
+        padding-top: 8px;
+        border-top: 1px solid var(--hair);
+        display: flex;
+        justify-content: space-between;
+        font-size: 6.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ---- Portada ---- */
+      .cover {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .cover .seal {
+        width: 1.5in;
+        height: 1.5in;
+        object-fit: contain;
+      }
+      .cover .rule {
+        width: 1.1in;
+        height: 1px;
+        background: var(--brass);
+        margin: 26px 0;
+      }
+      .cover .kicker {
+        margin-top: 0;
+        max-width: 5in;
+        line-height: 1.9;
+      }
+      .cover h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 62px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1;
+        margin-top: 16px;
+        letter-spacing: -0.01em;
+      }
+      .cover .sub {
+        margin-top: 18px;
+        font-size: 10px;
+        line-height: 1.7;
+        color: var(--muted);
+        max-width: 4.6in;
+      }
+      .cover-data {
+        margin-top: 34px;
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        gap: 30px;
+        justify-content: center;
+        text-align: left;
+      }
+      .cover-data .d .lbl {
+        font-size: 7px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+      }
+      .cover-data .d .v {
+        margin-top: 6px;
+        font-family: "Playfair Display", serif;
+        font-size: 14px;
+        color: var(--navy);
+        font-weight: 700;
+      }
+      .cover .party {
+        margin-top: 40px;
+        font-size: 8px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 700;
+        line-height: 1.8;
+      }
+      .cover .party span {
+        display: block;
+        font-size: 7px;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      /* ---- Carátula: tabla de datos ---- */
+      .car-top {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: 1fr 1.6in;
+        gap: 22px;
+        align-items: start;
+      }
+      .car-firm {
+        font-family: "Playfair Display", serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.25;
+      }
+      .car-badges {
+        display: grid;
+        gap: 10px;
+      }
+      .car-badges .b {
+        border: 1px solid var(--line);
+        border-top: 2px solid var(--brass);
+        border-radius: 8px;
+        padding: 8px 12px 10px;
+        text-align: center;
+      }
+      .car-badges .b .lbl {
+        font-size: 6.5px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+      }
+      .car-badges .b .v {
+        margin-top: 4px;
+        font-family: "Playfair Display", serif;
+        font-size: 17px;
+        color: var(--navy);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .car-cap {
+        margin-top: 20px;
+        font-size: 8px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+        border-bottom: 1px solid var(--hair);
+        padding-bottom: 5px;
+      }
+      .car-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 2px;
+      }
+      .car-table tr {
+        border-bottom: 1px solid var(--hair);
+      }
+      .car-table th {
+        width: 2.75in;
+        text-align: left;
+        vertical-align: top;
+        padding: 7px 14px 7px 0;
+        font-size: 8.5px;
+        font-weight: 600;
+        color: var(--navy);
+        line-height: 1.35;
+      }
+      .car-table td {
+        vertical-align: top;
+        padding: 7px 0;
+        font-size: 8.5px;
+        line-height: 1.35;
+        color: var(--ink);
+      }
+      .car-table td b {
+        font-weight: 700;
+      }
+      .car-table tr.hi td,
+      .car-table tr.hi th {
+        background: rgba(197, 160, 89, 0.09);
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+      .car-table tr.hi td {
+        font-family: "Playfair Display", serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .car-note {
+        margin-top: 14px;
+        font-size: 8px;
+        line-height: 1.5;
+        color: var(--muted);
+        border-left: 2px solid var(--brass);
+        padding-left: 10px;
+      }
+
+      /* ---- Cuerpo del contrato a dos columnas ---- */
+      .cuerpo {
+        margin-top: 12px;
+        /* La altura fija es lo que obliga a Chrome a saltar de columna.
+           Sin ella el texto sale en una sola columna interminable. */
+        height: 9.28in;
+        column-count: 2;
+        column-gap: 0.28in;
+        column-fill: balance;
+        font-size: 9.6px;
+        line-height: 1.5;
+        text-align: justify;
+        /* Sin partición de palabras: el original tampoco las parte y así
+           el texto queda verificable palabra por palabra. */
+        hyphens: none;
+      }
+      .cuerpo p {
+        margin-bottom: 6px;
+        color: var(--ink);
+      }
+      .cuerpo p.ind {
+        text-indent: 18px;
+      }
+      .cuerpo .op {
+        font-family: "Playfair Display", serif;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.3;
+        text-align: left;
+        margin-bottom: 8px;
+      }
+      .cuerpo h3 {
+        font-size: 8.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 700;
+        margin: 10px 0 6px;
+        padding-bottom: 3px;
+        border-bottom: 1px solid var(--brass);
+        break-after: avoid;
+      }
+      .cuerpo h4 {
+        font-size: 7.8px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 700;
+        margin: 9px 0 5px;
+        break-after: avoid;
+      }
+      .cuerpo h5 {
+        font-size: 7.6px;
+        color: var(--brass);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        margin: 8px 0 4px;
+        break-after: avoid;
+      }
+      .cuerpo b {
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .cuerpo .mk {
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .cuerpo .first {
+        margin-top: 0;
+      }
+
+      /* ---- Listas de documentos (anexos) ---- */
+      .docs {
+        break-inside: avoid;
+        margin-bottom: 8px;
+      }
+      .docs .cap {
+        font-size: 7.4px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 700;
+        border-bottom: 1px solid var(--brass);
+        padding-bottom: 3px;
+        margin-bottom: 6px;
+      }
+      .docs ul {
+        list-style: none;
+        text-align: left;
+      }
+      .docs li {
+        position: relative;
+        padding-left: 12px;
+        margin-bottom: 3.5px;
+        font-size: 7.4px;
+        line-height: 1.4;
+      }
+      .docs li::before {
+        content: "❖";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--brass);
+        font-size: 6.5px;
+      }
+      .docs-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      /* ---- Campos de firma en línea ---- */
+      .fld {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-top: 9px;
+        font-size: 7.6px;
+        color: var(--navy);
+        font-weight: 600;
+        break-inside: avoid;
+      }
+      .fld span {
+        white-space: nowrap;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 7px;
+      }
+      .fld i {
+        flex: 1;
+        border-bottom: 1px solid var(--line);
+        height: 11px;
+      }
+      .fld-lg {
+        margin-top: 16px;
+      }
+      .fld-lg i {
+        height: 15px;
+        border-bottom: 1px solid var(--navy);
+      }
+      .warn {
+        margin-top: 14px;
+        border: 1px solid rgba(197, 160, 89, 0.55);
+        background: rgba(197, 160, 89, 0.09);
+        border-radius: 8px;
+        padding: 9px 12px;
+        font-size: 7.6px;
+        line-height: 1.45;
+        color: var(--navy);
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-align: center;
+        break-inside: avoid;
+      }
+      /* Bloque de firma: rúbrica sobre la línea y el nombre debajo */
+      .sign-block {
+        /* Espacio suficiente para que la rúbrica no invada la línea de arriba */
+        margin-top: 62px;
+        position: relative;
+        break-inside: avoid;
+      }
+      .sign-block .firma {
+        position: absolute;
+        left: 50%;
+        bottom: 4px;
+        transform: translateX(-50%);
+        width: 1.5in;
+        height: auto;
+        opacity: 0.72;
+        filter: brightness(0);
+        pointer-events: none;
+      }
+      .sign-block .ln {
+        border-top: 1px solid var(--navy);
+        padding-top: 7px;
+        text-align: center;
+        font-size: 7.4px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 700;
+      }
+
+      /* ============================================================
+         BLOQUE "FORMULARIO"
+         Solicitudes para imprimir y llenar a mano. Los textos de
+         apoyo (día/mes/año, aclaraciones) van DENTRO de la caja como
+         placeholder tenue, no como etiquetas debajo.
+         ============================================================ */
+
+      .sheet.forma {
+        padding: 0.5in 0.6in 0.42in;
+      }
+      .sheet.forma .watermark {
+        width: 3.8in;
+        opacity: 0.06;
+      }
+
+      .form-title {
+        font-family: "Playfair Display", serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--navy);
+        text-align: center;
+        line-height: 1.1;
+        margin-top: 14px;
+      }
+      .form-sub {
+        margin-top: 8px;
+        text-align: center;
+        font-size: 7px;
+        line-height: 1.7;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      .form-sub b {
+        color: var(--navy);
+      }
+
+      /* ---- Bloque / sección ---- */
+      .fs {
+        position: relative;
+        margin-top: 10px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        padding: 13px 11px 9px;
+      }
+      .fs > .lg {
+        position: absolute;
+        top: -8px;
+        left: 12px;
+        background: var(--navy);
+        color: #fff;
+        border-radius: 4px;
+        padding: 3px 10px 4px;
+        font-size: 6.6px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      .fs > .lg b {
+        color: var(--brass-light);
+        font-weight: 700;
+      }
+
+      /* ---- Filas y campos ---- */
+      .frow {
+        display: flex;
+        gap: 9px;
+        margin-bottom: 6px;
+        align-items: flex-end;
+      }
+      .frow:last-child {
+        margin-bottom: 0;
+      }
+      .fc {
+        flex: 1;
+        min-width: 0;
+      }
+      .fl {
+        display: block;
+        font-size: 6.4px;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        /* En navy: el dorado se perdía sobre el papel blanco */
+        color: var(--navy);
+        font-weight: 700;
+        margin-bottom: 3px;
+        line-height: 1.3;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      /* Etiqueta que no cabe en un renglón: se permite que baje a dos */
+      .fl.w2 {
+        white-space: normal;
+      }
+      .fb {
+        height: 17px;
+        border: 1px solid rgba(10, 31, 68, 0.3);
+        border-bottom-color: rgba(10, 31, 68, 0.45);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.78);
+        display: flex;
+        align-items: center;
+        padding: 0 5px;
+        overflow: hidden;
+      }
+      /* Texto de apoyo dentro de la caja */
+      .ph {
+        font-size: 6.4px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(10, 31, 68, 0.42);
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .fb .sym {
+        font-family: "Playfair Display", serif;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--brass);
+        margin-right: 5px;
+      }
+
+      /* Fecha en tres cajas con día / mes / año adentro */
+      .fdate {
+        display: flex;
+        gap: 4px;
+      }
+      .fdate .fb {
+        flex: 1;
+        justify-content: center;
+        padding: 0 2px;
+      }
+      .fdate .ph {
+        letter-spacing: 0.08em;
+      }
+
+      /* Caja para capturar carácter por carácter (RFC, CURP) */
+      .fgrid {
+        display: flex;
+        gap: 2px;
+      }
+      .fgrid i {
+        flex: 1;
+        height: 17px;
+        border: 1px solid rgba(10, 31, 68, 0.3);
+        border-bottom-color: rgba(10, 31, 68, 0.45);
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      /* Casillas para palomear */
+      .fopts {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        height: 17px;
+      }
+      .fopts label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 7.5px;
+        color: var(--navy);
+        font-weight: 600;
+      }
+      .fopts label u {
+        width: 11px;
+        height: 11px;
+        border: 1px solid rgba(10, 31, 68, 0.4);
+        border-radius: 2px;
+        background: #fff;
+        display: block;
+      }
+
+      /* ---- Tabla de referencias ---- */
+      .ftable {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 6px;
+      }
+      .ftable th {
+        font-size: 6.4px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 700;
+        text-align: left;
+        padding: 0 0 4px 5px;
+      }
+      .ftable th.n,
+      .ftable td.n {
+        width: 16px;
+        padding-left: 0;
+        text-align: center;
+      }
+      .ftable td.n {
+        font-family: "Playfair Display", serif;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .ftable td {
+        padding: 0 4px 5px 0;
+      }
+      .ftable td:last-child {
+        padding-right: 0;
+      }
+
+      /* ---- Texto legal y firma del cliente ---- */
+      .legal {
+        font-size: 8px;
+        line-height: 1.6;
+        text-align: justify;
+        color: var(--ink);
+      }
+      .legal + .legal {
+        margin-top: 7px;
+      }
+      .fsign {
+        margin: 26px auto 4px;
+        width: 3.2in;
+        border-top: 1px solid var(--navy);
+        padding-top: 6px;
+        text-align: center;
+        font-size: 6.6px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 700;
+      }
+
+      /* Hoja de autorizaciones: pocos bloques, así que el sobrante
+         vertical se reparte entre ellos en vez de amontonarse abajo. */
+      .forma.firmas .stack {
+        flex: 1;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .forma.firmas .fs {
+        margin-top: 0;
+        padding: 18px 16px 14px;
+      }
+      .forma.firmas .legal {
+        font-size: 8.8px;
+        line-height: 1.75;
+      }
+      .forma.firmas .fsign {
+        margin-top: 46px;
+        width: 3.6in;
+      }
+
+      /* ============================================================
+         BLOQUE "MEMBRETE"
+         Hoja con encabezado y pie de marca y el centro libre, para
+         escribir o imprimir encima cualquier comunicado.
+         ============================================================ */
+
+      .sheet.membrete {
+        padding: 0.62in 0.78in 0.5in;
+      }
+      .sheet.membrete .watermark {
+        /* Muy tenue: aquí se escribe encima y no debe estorbar la lectura */
+        width: 3.9in;
+        opacity: 0.05;
+      }
+
+      /* Encabezado completo (primera hoja) */
+      .mb-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .mb-head .brand {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+      }
+      .mb-head .brand img {
+        width: 62px;
+        height: 62px;
+        object-fit: contain;
+      }
+      .mb-head .brand .name {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 21px;
+        color: var(--navy);
+        letter-spacing: 0.02em;
+        line-height: 1.1;
+      }
+      .mb-head .brand .tag {
+        margin-top: 4px;
+        font-size: 6.6px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+      }
+      .mb-head .aside {
+        text-align: right;
+        font-size: 7.5px;
+        line-height: 1.9;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .mb-head .aside b {
+        color: var(--navy);
+      }
+
+      .mb-rule {
+        margin-top: 15px;
+        height: 1px;
+        background: var(--navy);
+      }
+      .mb-rule + .mb-rule {
+        margin-top: 4px;
+        background: var(--hair);
+      }
+
+      /* Zona libre para el contenido */
+      .mb-body {
+        flex: 1;
+        min-height: 0;
+        padding-top: 34px;
+        font-size: 10.5px;
+        line-height: 1.75;
+        color: var(--ink);
+      }
+      .mb-body p {
+        margin-bottom: 11px;
+        text-align: justify;
+      }
+      .mb-body .fecha {
+        text-align: right;
+        font-size: 9px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        margin-bottom: 26px;
+      }
+      .mb-body .para {
+        font-family: "Playfair Display", serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.3;
+        margin-bottom: 4px;
+      }
+      .mb-body .para + .cargo {
+        font-size: 8.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+
+      /* Pie con los datos de contacto */
+      .mb-foot {
+        margin-top: auto;
+        padding-top: 12px;
+        border-top: 1px solid var(--brass);
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1.4fr;
+        gap: 20px;
+        font-size: 6.6px;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+      .mb-foot .h {
+        font-size: 6px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 700;
+        margin-bottom: 3px;
+      }
+      .mb-foot .r {
+        text-align: right;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+        .no-print {
+          display: none !important;
+        }
+        .sheet {
+          box-shadow: none;
+        }
+        .sheet + .sheet {
+          margin-top: 0;
+        }
+        .sheet {
+          break-after: page;
+        }
+        .sheet:last-of-type {
+          break-after: auto;
+        }
+      }

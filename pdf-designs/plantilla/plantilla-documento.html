@@ -1,0 +1,205 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════
+  PLANTILLA DE DOCUMENTO — Solución créditicia
+  ════════════════════════════════════════════════════════════════
+  Cómo usar:
+   1. Duplica este archivo y renómbralo (ej. "estado-cuenta.html").
+   2. Edita SOLO lo que está entre los comentarios "EDITA …".
+   3. El encabezado, el marco dorado, la marca de agua y el pie
+      NO se tocan: así todos los documentos se ven iguales.
+   4. Abre el archivo en el navegador y da clic en "Descargar PDF".
+  El estilo vive en documento.css (compartido por todos los documentos).
+  ════════════════════════════════════════════════════════════════
+-->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <!-- EDITA: título que aparece en la pestaña del navegador -->
+    <title>Documento — Solución créditicia</title>
+    <link rel="stylesheet" href="documento.css" />
+  </head>
+  <body>
+    <!-- Botón de descarga (no aparece en el PDF) -->
+    <button class="download-btn no-print" type="button" onclick="window.print()">
+      <span class="material-symbols-outlined">download</span>
+      Descargar PDF
+    </button>
+
+    <div class="sheet">
+      <!-- ─── Elementos fijos (NO editar) ─── -->
+      <img class="watermark" src="assets/logo-primary.png" alt="" aria-hidden="true" />
+      <div class="frame" aria-hidden="true"></div>
+
+      <!-- QR — EDITA solo la imagen (assets/qr-ejemplo.png) por el QR de cada documento -->
+      <div class="qr-badge">
+        <img src="assets/qr-ejemplo.png" alt="Código QR de verificación" />
+        <span>Documento<br />verificable</span>
+      </div>
+
+      <!-- Encabezado fijo de marca (NO editar) -->
+      <div class="head">
+        <div class="brand">
+          <img src="assets/logo-primary.png" alt="Solución créditicia" />
+          <div>
+            <div class="name">Solución créditicia</div>
+          </div>
+        </div>
+        <div class="meta">
+          <!-- EDITA: etiqueta y fecha del documento -->
+          <div><b>Inversión</b></div>
+          <div>México · 2026</div>
+        </div>
+      </div>
+      <div class="topline"></div>
+      <div class="thinline"></div>
+
+      <!-- ══════════ EDITA DE AQUÍ ══════════ -->
+
+      <!-- 1. TÍTULO -->
+      <div class="kicker">Resolución de financiamiento</div>
+      <h1 class="title">Crédito Aprobado</h1>
+      <p class="lede">
+        Nos complace informarle que el estudio realizado a su documentación ha sido
+        <strong>satisfactorio</strong>. Con base en su análisis socioeconómico, elija el esquema de
+        financiamiento que mejor se ajuste a sus objetivos.
+      </p>
+
+      <!-- 2. CAMPOS PARA LLENAR (agrega o quita <div class="m">…</div>) -->
+      <div class="meta-row">
+        <div class="m">
+          <div class="lbl">Nombre del cliente</div>
+          <div class="val"></div>
+        </div>
+        <div class="m">
+          <div class="lbl">Número de contrato</div>
+          <div class="val"></div>
+        </div>
+        <div class="m">
+          <div class="lbl">Inicio de pago</div>
+          <div class="val"></div>
+        </div>
+      </div>
+
+      <!-- 3. SECCIÓN DE TARJETAS -->
+      <div class="section-cap">
+        <h2>Esquemas de financiamiento</h2>
+        <span>Montos en pesos M.N.</span>
+      </div>
+      <div class="cards">
+        <!-- BLOQUE TARJETA: duplica este bloque por cada renglón -->
+        <div class="card ghost">
+          <div class="ic"><span class="material-symbols-outlined">verified</span></div>
+          <div class="info">
+            <div class="name">Crédito Principal</div>
+            <div class="meta">
+              <span>Plazo <b>72 meses</b></span>
+              <span>Aportación <b>$1,142.04</b></span>
+              <span>Respaldo <b>$4,200.00</b></span>
+            </div>
+          </div>
+          <div class="amount">
+            <div class="big">$40,000</div>
+            <div class="sm">Monto</div>
+          </div>
+        </div>
+
+        <div class="card ghost">
+          <div class="ic"><span class="material-symbols-outlined">verified</span></div>
+          <div class="info">
+            <div class="name">Crédito Secundario</div>
+            <div class="meta">
+              <span>Plazo <b>42 meses</b></span>
+              <span>Aportación <b>$1,252.28</b></span>
+              <span>Respaldo <b>$3,300.00</b></span>
+            </div>
+          </div>
+          <div class="amount">
+            <div class="big">$40,000</div>
+            <div class="sm">Monto</div>
+          </div>
+        </div>
+
+        <div class="card ghost">
+          <div class="ic"><span class="material-symbols-outlined">verified</span></div>
+          <div class="info">
+            <div class="name">Crédito Opcional</div>
+            <div class="meta">
+              <span>Plazo <b>24 meses</b></span>
+              <span>Aportación <b>$2,075.11</b></span>
+              <span>Respaldo <b>$2,200.00</b></span>
+            </div>
+          </div>
+          <div class="amount">
+            <div class="big">$40,000</div>
+            <div class="sm">Monto</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. PANEL DE DOS GRÁFICAS (izquierda: barra · derecha: dona) -->
+      <div class="stats-row">
+        <!-- Gráfica izquierda: barra de porcentaje -->
+        <div class="stat">
+          <div class="num">80<small>%</small></div>
+          <div class="bardesc">
+            <div class="h">Índice de aprobación</div>
+            <!-- EDITA el porcentaje cambiando width: 80% -->
+            <div class="bar"><div class="fill" style="width: 80%"></div></div>
+            <div class="p">De los perfiles evaluados obtiene resolución favorable.</div>
+          </div>
+        </div>
+
+        <div class="stats-divider"></div>
+
+        <!-- Gráfica derecha: dona de preferencia -->
+        <div class="pref">
+          <div class="h">Esquema preferido por los clientes</div>
+          <div class="pref-body">
+            <!-- EDITA los cortes de la dona en el conic-gradient (0.6 = 60%, 0.85 = +25%) -->
+            <div
+              class="donut2"
+              style="
+                background: conic-gradient(
+                  var(--brass) 0turn 0.6turn,
+                  var(--navy) 0.6turn 0.85turn,
+                  #9aa6bd 0.85turn 1turn
+                );
+              "
+            >
+              <div class="hole"><b>60%</b><span>Secundario</span></div>
+            </div>
+            <div class="legend">
+              <div class="li"><span class="dot d1"></span>Secundario <b>60%</b></div>
+              <div class="li"><span class="dot d2"></span>Principal <b>25%</b></div>
+              <div class="li"><span class="dot d3"></span>Opcional <b>15%</b></div>
+            </div>
+          </div>
+          <div class="cap">El plazo intermedio es el más solicitado por su equilibrio.</div>
+        </div>
+      </div>
+
+      <!-- 5. FIRMAS (la firma de la empresa ya viene puesta) -->
+      <div class="signs">
+        <div class="sign">
+          <img class="firma" src="assets/firma.png" alt="Firma Solución créditicia" />
+          <div class="ln"><img src="assets/logo-primary.png" alt="" />Solución créditicia</div>
+        </div>
+        <div class="sign">
+          <div class="ln">Solicitante de crédito</div>
+        </div>
+      </div>
+
+      <!-- ══════════ FIN DE LA ZONA EDITABLE ══════════ -->
+
+      <!-- Aviso legal fijo (NO editar salvo cambio legal) -->
+      <div class="privacy">
+        <b>Aviso de privacidad.</b> En apego a la Ley Federal de Protección de Datos Personales en
+        Posesión de los Particulares, sus datos son tratados con estricta confidencialidad. Solución
+        créditicia tiene prohibida la distribución y comercialización de su información. Los montos,
+        plazos y condiciones aquí presentados son de carácter informativo y están sujetos a
+        evaluación, documentación y políticas de cada institución.
+      </div>
+    </div>
+  </body>
+</html>
