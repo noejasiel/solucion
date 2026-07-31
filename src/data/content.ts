@@ -264,14 +264,14 @@ export const contactChannels: ContactChannel[] = [
   {
     icon: "call",
     label: "Línea Directa",
-    value: "+52 (55) 88-00-06-98",
-    href: "tel:+525588000698",
+    value: "+52 (55) 93-13-73-19",
+    href: "tel:+525593137319",
   },
   {
     icon: "chat",
     label: "WhatsApp",
-    value: "+52 (55) 93-13-73-19",
-    href: "https://wa.me/525593137319",
+    value: "+52 (55) 88-00-06-98",
+    href: "https://wa.me/525588000698",
   },
   {
     icon: "mail",
