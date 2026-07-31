@@ -13,6 +13,7 @@ import Faq from "./components/Faq.tsx";
 import LocationSection from "./components/LocationSection.tsx";
 import Disclaimer from "./components/Disclaimer.tsx";
 import Footer from "./components/Footer.tsx";
+import WhatsAppButton from "./components/WhatsAppButton.tsx";
 
 export default function App() {
   useLenis();
@@ -34,6 +35,7 @@ export default function App() {
         <Disclaimer />
       </main>
       <Footer />
+      <WhatsAppButton />
     </MotionConfig>
   );
 }

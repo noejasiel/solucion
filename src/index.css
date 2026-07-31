@@ -126,3 +126,105 @@
     }
   }
 }
+
+/* ====== WhatsApp Floating Button ====== */
+.wa-fab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  /* subtle float */
+  animation: wa-float 3s ease-in-out infinite;
+}
+
+.wa-fab-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  box-shadow:
+    0 4px 14px rgba(37, 211, 102, 0.45),
+    0 0 40px rgba(37, 211, 102, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+.wa-fab:hover .wa-fab-inner {
+  box-shadow:
+    0 6px 24px rgba(37, 211, 102, 0.55),
+    0 0 60px rgba(37, 211, 102, 0.25);
+}
+
+/* Pulse rings */
+.wa-pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.5);
+  animation: wa-ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.wa-pulse-ring--2 {
+  animation-delay: 0.8s;
+}
+
+/* Tooltip */
+.wa-tooltip {
+  position: relative;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+  margin-bottom: 8px;
+}
+
+.wa-tooltip-arrow {
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  translate: 0 -50%;
+  width: 12px;
+  height: 12px;
+  background: #1daa5a;
+  rotate: 45deg;
+  border-radius: 2px;
+}
+
+/* ---- Animations ---- */
+@keyframes wa-float {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+@keyframes wa-ping {
+  0% {
+    scale: 1;
+    opacity: 0.6;
+  }
+  100% {
+    scale: 1.6;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-fab,
+  .wa-pulse-ring {
+    animation: none;
+  }
+}
