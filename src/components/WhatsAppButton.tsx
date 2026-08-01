@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PHONE = "525588000698";
-const DEFAULT_MESSAGE =
-  "¡Hola! Me interesa obtener más información sobre sus soluciones de crédito. ¿Podrían asesorarme?";
+const DEFAULT_MESSAGE = "¡Hola! Me interesa obtener más información sobre un crédito";
 
 const TIPS = [
   "¿Tienes dudas? ¡Contáctanos!",
