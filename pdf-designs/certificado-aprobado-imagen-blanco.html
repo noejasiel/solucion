@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificado de Aprobación - Solución créditicia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #0a1f44;
+        --navy-dark: #061530;
+        --navy-accent: #112d5e;
+        --brass: #c5a059;
+        --brass-light: #e8c176;
+        --white: #ffffff;
+        --muted: #4a5568;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #dbe0ea;
+        font-family: "Inter", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        color: var(--navy);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Lienzo cuadrado 1:1 de 1000px por 1000px: Fondo Blanco y Letras Azules */
+      .certificate-card {
+        position: relative;
+        width: 1000px;
+        height: 1000px;
+        background: #ffffff;
+        border: 4px solid var(--navy);
+        border-radius: 6px;
+        box-shadow: 0 25px 60px rgba(10, 31, 68, 0.25), inset 0 0 0 8px #ffffff, inset 0 0 0 11px var(--brass);
+        padding: 60px 65px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+      }
+
+      /* Marco interior de filete dorado sutil */
+      .inner-frame {
+        position: absolute;
+        inset: 24px;
+        border: 1.5px solid rgba(197, 160, 89, 0.5);
+        pointer-events: none;
+        z-index: 3;
+      }
+
+      /* Filete superior azul marino y dorado */
+      .top-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: linear-gradient(90deg, var(--navy) 0%, var(--navy-accent) 60%, var(--brass) 100%);
+        z-index: 4;
+      }
+
+      /* Marca de agua del logo oficial sobre fondo blanco */
+      .watermark {
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        width: 590px;
+        height: 590px;
+        transform: translate(-50%, -50%);
+        opacity: 0.08;
+        pointer-events: none;
+        z-index: 5;
+        mix-blend-mode: multiply;
+        object-fit: contain;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      /* Encabezado con Logo oficial y Branding */
+      .header {
+        position: relative;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .brand-logo {
+        width: 76px;
+        height: 76px;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 8px rgba(10, 31, 68, 0.15));
+      }
+
+      .brand-title {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 27px;
+        color: var(--navy);
+        letter-spacing: 0.02em;
+        line-height: 1;
+      }
+
+      .brand-sub {
+        font-size: 11px;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+        margin-top: 6px;
+      }
+
+      .header-badge {
+        text-align: right;
+        font-size: 10.5px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--navy);
+        font-weight: 700;
+      }
+
+      .header-badge span {
+        color: var(--brass);
+        display: block;
+        font-size: 9px;
+        margin-top: 2px;
+      }
+
+      /* Título Principal */
+      .content {
+        position: relative;
+        z-index: 4;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .kicker {
+        font-size: 11.5px;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--brass);
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .main-heading {
+        font-family: "Playfair Display", serif;
+        font-weight: 800;
+        font-size: 46px;
+        letter-spacing: 0.01em;
+        color: var(--navy);
+        text-transform: uppercase;
+        line-height: 1.1;
+      }
+
+      .heading-divider {
+        width: 160px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--navy), transparent);
+        margin: 18px auto 0;
+      }
+
+      /* Cuerpo del mensaje en Letras Azules sobre Fondo Blanco */
+      .body-text {
+        position: relative;
+        z-index: 4;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        padding: 0 35px;
+      }
+
+      .body-p {
+        font-size: 16.5px;
+        font-weight: 800;
+        line-height: 1.6;
+        letter-spacing: 0.03em;
+        color: var(--navy);
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      .congrats {
+        font-size: 21px;
+        font-weight: 900;
+        color: var(--navy-accent);
+        letter-spacing: 0.08em;
+        margin-top: 10px;
+      }
+
+      /* Pie de página con Firma real y Sello APROBADO */
+      .footer-section {
+        position: relative;
+        z-index: 4;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .signatures-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 0 40px;
+      }
+
+      .signature-block {
+        text-align: center;
+        position: relative;
+        width: 280px;
+      }
+
+      .signature-img {
+        width: 195px;
+        height: auto;
+        margin: 0 auto -15px;
+        filter: brightness(0.2) contrast(1.5);
+        display: block;
+      }
+
+      .signature-line {
+        height: 2px;
+        background: var(--navy);
+        margin-bottom: 8px;
+      }
+
+      .signatory-title {
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        color: var(--navy);
+        text-transform: uppercase;
+      }
+
+      /* Sello APROBADO con acabado de tinta de goma y rastros de textura gastada */
+      .stamp-box {
+        position: relative;
+        display: inline-block;
+        padding: 8px 26px;
+        border: 4.5px solid var(--navy);
+        border-radius: 5px;
+        color: var(--navy);
+        font-family: "Montserrat", "Inter", sans-serif;
+        font-weight: 900;
+        font-size: 37px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        transform: rotate(-13deg);
+        mix-blend-mode: multiply;
+        opacity: 0.92;
+        filter: url(#stamp-distress) drop-shadow(0 3px 6px rgba(10, 31, 68, 0.18));
+        user-select: none;
+        background: transparent;
+      }
+
+      .stamp-box::before {
+        content: "";
+        position: absolute;
+        inset: 3px;
+        border: 1.5px solid var(--navy);
+        border-radius: 2px;
+        pointer-events: none;
+      }
+
+      /* Aviso de privacidad */
+      .privacy-notice {
+        font-size: 9.5px;
+        line-height: 1.5;
+        color: var(--muted);
+        text-align: justify;
+        border-top: 1px solid rgba(10, 31, 68, 0.2);
+        padding-top: 12px;
+        font-weight: 500;
+      }
+
+      .privacy-notice b {
+        color: var(--navy);
+        letter-spacing: 0.08em;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Filtro SVG para simular textura de tinta de goma y bordes desgastados del sello -->
+    <svg width="0" height="0" style="position: absolute; pointer-events: none;">
+      <filter id="stamp-distress" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.22" numOctaves="4" result="noise" />
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 2.4 -0.7" result="distress" />
+        <feComposite in="SourceGraphic" in2="distress" operator="in" />
+      </filter>
+    </svg>
+
+    <div class="certificate-card">
+      <div class="top-line"></div>
+      <div class="inner-frame"></div>
+
+      <!-- Marca de agua oficial -->
+      <img
+        class="watermark"
+        src="file:///Users/arturmac/Solucion%20crediticia/public/brand/logo-primary.png"
+        alt=""
+      />
+
+      <!-- Encabezado con Logo oficial y Marca -->
+      <div class="header">
+        <div class="brand">
+          <img
+            class="brand-logo"
+            src="file:///Users/arturmac/Solucion%20crediticia/public/brand/logo-primary.png"
+            alt="Solución créditicia"
+          />
+          <div>
+            <div class="brand-title">Solución créditicia</div>
+            <div class="brand-sub">Personal y empresarial</div>
+          </div>
+        </div>
+        <div class="header-badge">
+          DOCUMENTO OFICIAL
+          <span>MÉXICO · 2026</span>
+        </div>
+      </div>
+
+      <!-- Título de Aprobación -->
+      <div class="content">
+        <div class="kicker">Resolución de Financiamiento</div>
+        <div class="main-heading">Certificado de Aprobación</div>
+        <div class="heading-divider"></div>
+      </div>
+
+      <!-- Cuerpo del Mensaje en Letras Azules -->
+      <div class="body-text">
+        <p class="body-p">
+          Por medio del presente certificado se hace constar la aprobación del crédito a su favor.
+        </p>
+        <p class="body-p">
+          Los criterios considerados para la acreditación fueron la documentación entregada y el estudio socioeconómico realizado.
+        </p>
+        <p class="body-p">
+          En breve, nos pondremos en contacto con usted para continuar con el proceso.
+        </p>
+        <p class="body-p congrats">¡Muchas gracias y felicidades!</p>
+      </div>
+
+      <!-- Sección Inferior: Firma oficial y Sello APROBADO -->
+      <div class="footer-section">
+        <div class="signatures-row">
+          <div class="signature-block">
+            <img
+              class="signature-img"
+              src="file:///Users/arturmac/Solucion%20crediticia/pdf-designs/assets/firma.png"
+              alt="Firma oficial"
+            />
+            <div class="signature-line"></div>
+            <div class="signatory-title">Solución créditicia</div>
+          </div>
+
+          <div class="stamp-box">APROBADO</div>
+        </div>
+
+        <div class="privacy-notice">
+          <b>AVISO DE PRIVACIDAD:</b> Apegándose a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, nadie tiene acceso a sus datos. Solamente tiene acceso usted y Solución créditicia. Tienen prohibido la distribución y la comercialización de sus datos en cumplimiento en conjunto con la Ley Federal de Acceso a la Información.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

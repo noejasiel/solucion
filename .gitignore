@@ -1,6 +1,12 @@
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
 # Dependencias y build
 node_modules/
 dist/
+
 
 # Sistema
 .DS_Store

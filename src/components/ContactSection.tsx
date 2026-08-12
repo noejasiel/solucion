@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import Reveal from "./Reveal.tsx";
-import { contactChannels, contactEmail, serviceOptions } from "../data/content.ts";
+import { contactChannels, serviceOptions } from "../data/content.ts";
 
 interface ContactFormData {
   name: string;
@@ -23,8 +23,6 @@ const initialForm: ContactFormData = {
   message: "",
 };
 
-const EMAIL_HREF = `mailto:${contactEmail}`;
-
 const inputClass =
   "w-full rounded-lg border border-navy/15 bg-white px-4 py-3 text-ink placeholder:text-muted/60 transition focus:border-brass focus:outline-none focus:ring-2 focus:ring-brass/30";
 
@@ -34,7 +32,9 @@ const inputClass =
  */
 export default function ContactSection() {
   const [form, setForm] = useState<ContactFormData>(initialForm);
+  const [submitting, setSubmitting] = useState<boolean>(false);
   const [sent, setSent] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -42,23 +42,57 @@ export default function ContactSection() {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
     setSent(false);
+    setError(null);
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const subject = `Solicitud de asesoría — ${form.service}`;
-    const body = [
-      `Nombre: ${form.name}`,
-      `Cantidad que necesita: ${form.amount}`,
-      `Ciudad: ${form.city}`,
-      `Teléfono: ${form.phone}`,
-      `Correo: ${form.email}`,
-      `Servicio de interés: ${form.service}`,
-      "",
-      form.message,
-    ].join("\n");
-    window.location.href = `${EMAIL_HREF}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    setSubmitting(true);
+    setError(null);
+    setSent(false);
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name,
+          amount: form.amount,
+          city: form.city,
+          phone: form.phone,
+          email: form.email,
+          service: form.service,
+          message: form.message,
+        }),
+      });
+
+      const resData = await response.json().catch(() => ({}));
+
+      if (response.ok && resData.success) {
+        setSent(true);
+        setForm(initialForm);
+
+        if (typeof window !== "undefined") {
+          const win = window as unknown as { dataLayer?: Record<string, unknown>[] };
+          win.dataLayer = win.dataLayer || [];
+          win.dataLayer.push({
+            event: "form_submission",
+            formName: "contact_form",
+            service: form.service,
+          });
+        }
+      } else {
+        throw new Error(resData.error || "Respuesta no válida del servidor");
+      }
+    } catch (err: any) {
+      console.error("Error al enviar el formulario:", err);
+      setError(err?.message || "No se pudo enviar la solicitud en este momento. Por favor inténtalo de nuevo.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -249,19 +283,32 @@ export default function ContactSection() {
 
               <button
                 type="submit"
-                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-navy py-4 text-sm font-semibold text-white transition hover:bg-navy-soft"
+                disabled={submitting}
+                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-navy py-4 text-sm font-semibold text-white transition hover:bg-navy-soft disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span className="material-symbols-outlined" aria-hidden="true">
-                  send
+                  {submitting ? "progress_activity" : "send"}
                 </span>
-                Enviar solicitud
+                {submitting ? "Enviando solicitud..." : "Enviar solicitud"}
               </button>
 
-              <p aria-live="polite" role="status" className="mt-4 text-center text-xs text-muted">
-                {sent
-                  ? "Se abrió tu aplicación de correo con la solicitud lista para enviar."
-                  : "Al enviar este formulario aceptas ser contactado para recibir información sobre los servicios."}
-              </p>
+              {sent && (
+                <p aria-live="polite" role="status" className="mt-4 rounded-lg bg-emerald-50 p-3 text-center text-xs font-medium text-emerald-800 border border-emerald-200">
+                  ¡Gracias! Tu solicitud ha sido enviada con éxito. Un asesor se comunicará contigo en breve.
+                </p>
+              )}
+
+              {error && (
+                <p aria-live="polite" role="status" className="mt-4 rounded-lg bg-red-50 p-3 text-center text-xs font-medium text-red-700 border border-red-200">
+                  {error}
+                </p>
+              )}
+
+              {!sent && !error && (
+                <p aria-live="polite" role="status" className="mt-4 text-center text-xs text-muted">
+                  Al enviar este formulario aceptas ser contactado para recibir información sobre los servicios.
+                </p>
+              )}
             </form>
           </div>
         </Reveal>
