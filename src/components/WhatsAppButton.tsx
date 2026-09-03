@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const PHONE = "525588000698";
+const PHONE = "525665339599";
 const DEFAULT_MESSAGE = "¡Hola! Me interesa obtener más información sobre un crédito";
 
 const TIPS = [

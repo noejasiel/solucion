@@ -270,8 +270,8 @@ export const contactChannels: ContactChannel[] = [
   {
     icon: "chat",
     label: "WhatsApp",
-    value: "+52 (55) 88-00-06-98",
-    href: "https://wa.me/525588000698",
+    value: "+52 (56) 65-33-95-99",
+    href: "https://wa.me/525665339599",
   },
   {
     icon: "mail",
