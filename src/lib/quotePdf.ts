@@ -17,9 +17,9 @@ const money = new Intl.NumberFormat("es-MX", {
 /** Se carga bajo demanda desde el simulador; no requiere un servicio de PDF. */
 export async function buildQuotePdf(
   quote: CreditQuote,
-  prospect: ProspectData,
-  requestId: string,
-  issuedAt: Date,
+  prospect?: Partial<ProspectData> | null,
+  requestId: string = crypto.randomUUID(),
+  issuedAt: Date = new Date(),
 ): Promise<Blob> {
   const logoResponse = await fetch(brand.logoLight, { signal: AbortSignal.timeout(10_000) }).catch(() => {
     throw new Error("No se pudo cargar el logotipo. Intenta descargar la cotización de nuevo.");
@@ -47,7 +47,7 @@ export async function buildQuotePdf(
 
   doc.setProperties({
     title: "Cotización de crédito y tabla de amortización",
-    subject: `${quote.service} - ${prospect.name}`,
+    subject: prospect?.name ? `${quote.service} - ${prospect.name}` : quote.service,
     author: "Solución Crediticia",
     creator: "Solución Crediticia",
   });
@@ -68,36 +68,40 @@ export async function buildQuotePdf(
   doc.text(`Folio ${folio}`, margin + 40, 45);
   doc.text(date, margin + 40, 51);
 
-  doc.setTextColor(navy);
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(8);
-  doc.text("DATOS DEL SOLICITANTE", margin, 68);
+  let y = 68;
 
-  const infoRows = [
-    ["Nombre", prospect.name],
-    ["Correo", prospect.email],
-    ["Teléfono", prospect.phone],
-  ];
-  const clientLines = infoRows.map(([label, value]) => {
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    return { label, lines: doc.splitTextToSize(value.replace(/\s+/g, " ").trim(), width - 37) as string[] };
-  });
-  const clientHeight = clientLines.reduce((height, row) => height + Math.max(7, row.lines.length * 4.5 + 2), 8);
-  doc.setFillColor(ivory);
-  doc.roundedRect(margin - 2, 73, width + 4, clientHeight, 2, 2, "F");
-  let y = 80;
-  for (const row of clientLines) {
-    doc.setTextColor(muted);
-    doc.setFontSize(8);
-    doc.text(row.label, margin + 4, y);
+  if (prospect?.name && prospect.name.trim().length > 0) {
     doc.setTextColor(navy);
-    doc.setFontSize(10);
-    doc.text(row.lines, margin + 32, y, { lineHeightFactor: 1.27 });
-    y += Math.max(7, row.lines.length * 4.5 + 2);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(8);
+    doc.text("DATOS DEL SOLICITANTE", margin, 68);
+
+    const infoRows = [
+      ["Nombre", prospect.name],
+      ...(prospect.email ? [["Correo", prospect.email]] : []),
+      ...(prospect.phone ? [["Teléfono", prospect.phone]] : []),
+    ];
+    const clientLines = infoRows.map(([label, value]) => {
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      return { label, lines: doc.splitTextToSize(value.replace(/\s+/g, " ").trim(), width - 37) as string[] };
+    });
+    const clientHeight = clientLines.reduce((height, row) => height + Math.max(7, row.lines.length * 4.5 + 2), 8);
+    doc.setFillColor(ivory);
+    doc.roundedRect(margin - 2, 73, width + 4, clientHeight, 2, 2, "F");
+    let clientY = 80;
+    for (const row of clientLines) {
+      doc.setTextColor(muted);
+      doc.setFontSize(8);
+      doc.text(row.label, margin + 4, clientY);
+      doc.setTextColor(navy);
+      doc.setFontSize(10);
+      doc.text(row.lines, margin + 32, clientY, { lineHeightFactor: 1.27 });
+      clientY += Math.max(7, row.lines.length * 4.5 + 2);
+    }
+    y = 73 + clientHeight + 11;
   }
 
-  y = 73 + clientHeight + 11;
   doc.setFont("helvetica", "bold");
   doc.setFontSize(8);
   doc.setTextColor(navy);
