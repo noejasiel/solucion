@@ -77,7 +77,7 @@ export default function About() {
               </div>
             </Reveal>
 
-            <ul className="space-y-4 mb-10">
+            <ul className="space-y-4 mb-8">
               {about.checklist.map((item, index) => (
                 <li key={item.text}>
                   <Reveal
@@ -97,10 +97,28 @@ export default function About() {
               ))}
             </ul>
 
+            {/* Métricas de trayectoria real */}
+            <Reveal delay={0.28}>
+              <div className="mb-9 grid grid-cols-2 gap-4 border-y border-navy/10 py-6 sm:grid-cols-3">
+                <div>
+                  <p className="font-display text-2xl font-bold text-navy sm:text-3xl">+10 Años</p>
+                  <p className="mt-1 text-xs text-muted">Asesoría financiera en México</p>
+                </div>
+                <div>
+                  <p className="font-display text-2xl font-bold text-navy sm:text-3xl">+1,400</p>
+                  <p className="mt-1 text-xs text-muted">Clientes y empresas asesoradas</p>
+                </div>
+                <div className="col-span-2 sm:col-span-1">
+                  <p className="font-display text-2xl font-bold text-brass sm:text-3xl">98%</p>
+                  <p className="mt-1 text-xs text-muted">Tasa de satisfacción de clientes</p>
+                </div>
+              </div>
+            </Reveal>
+
             <Reveal delay={0.35}>
               <a
                 href={about.cta.href}
-                className="bg-navy text-white px-8 py-4 rounded-lg font-semibold text-sm inline-flex items-center gap-2 hover:bg-navy-soft transition"
+                className="bg-navy text-white px-8 py-4 rounded-lg font-semibold text-sm inline-flex items-center gap-2 hover:bg-navy-soft transition shadow-md shadow-navy/20"
               >
                 <span className="material-symbols-outlined" aria-hidden="true">
                   support_agent

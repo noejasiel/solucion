@@ -305,9 +305,10 @@ export default function ContactSection() {
               )}
 
               {!sent && !error && (
-                <p aria-live="polite" role="status" className="mt-4 text-center text-xs text-muted">
-                  Al enviar este formulario aceptas ser contactado para recibir información sobre los servicios.
-                </p>
+                <div className="mt-5 flex items-center justify-center gap-2 rounded-xl bg-ivory/80 px-4 py-2.5 text-center text-xs text-muted border border-navy/5">
+                  <span className="material-symbols-outlined text-sm text-brass shrink-0">lock</span>
+                  <span>Tus datos están protegidos bajo estricta confidencialidad. Sin cobros previos ni anticipos.</span>
+                </div>
               )}
             </form>
           </div>

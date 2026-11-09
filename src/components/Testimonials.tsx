@@ -6,46 +6,52 @@ const STAR_COUNT = 5;
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <article className="relative rounded-2xl border border-brass/10 bg-ivory p-8 shadow-ambient transition-all duration-300 hover:-translate-y-1 hover:shadow-lifted">
-      <span
-        className="material-symbols-outlined absolute top-6 right-6 text-6xl text-brass/20"
-        aria-hidden="true"
-      >
-        format_quote
-      </span>
-
-      <div className="mb-6 flex items-center gap-4">
-        <div
-          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-brass bg-white font-bold text-navy"
-          aria-hidden="true"
-        >
-          {testimonial.initials}
-        </div>
-        <div>
-          <p className="text-sm font-bold text-navy">{testimonial.name}</p>
-          <p className="text-xs text-muted">{testimonial.role}</p>
-        </div>
-      </div>
-
-      <div
-        className="mb-4 flex items-center text-brass"
-        role="img"
-        aria-label="5 de 5 estrellas"
-      >
-        {Array.from({ length: STAR_COUNT }, (_, star) => (
-          <span
-            key={star}
-            className="material-symbols-outlined text-base"
-            aria-hidden="true"
-          >
-            star
+    <article className="group relative flex h-full flex-col justify-between rounded-2xl border border-brass/20 bg-gradient-to-b from-white via-ivory/40 to-white p-8 shadow-ambient transition-all duration-300 hover:-translate-y-1 hover:border-brass/50 hover:shadow-lifted">
+      <div>
+        <div className="flex items-center justify-between gap-2 mb-6">
+          <div className="flex items-center gap-3.5">
+            <div
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy text-brass font-bold text-sm ring-2 ring-brass/40 shadow-sm"
+              aria-hidden="true"
+            >
+              {testimonial.initials}
+            </div>
+            <div>
+              <p className="text-sm font-bold text-navy">{testimonial.name}</p>
+              <p className="text-xs text-muted">{testimonial.role}</p>
+            </div>
+          </div>
+          <span className="inline-flex items-center gap-1 rounded-full bg-brass/10 px-2.5 py-0.5 text-[10px] font-semibold text-navy border border-brass/30">
+            <span className="material-symbols-outlined text-xs text-brass">verified</span>
+            Verificado
           </span>
-        ))}
+        </div>
+
+        <div
+          className="mb-4 flex items-center gap-0.5 text-brass"
+          role="img"
+          aria-label="5 de 5 estrellas"
+        >
+          {Array.from({ length: STAR_COUNT }, (_, star) => (
+            <span
+              key={star}
+              className="material-symbols-outlined text-base"
+              aria-hidden="true"
+            >
+              star
+            </span>
+          ))}
+        </div>
+
+        <blockquote className="text-sm leading-relaxed text-ink/85 italic">
+          “{testimonial.quote}”
+        </blockquote>
       </div>
 
-      <blockquote className="text-sm italic leading-relaxed text-ink/80">
-        “{testimonial.quote}”
-      </blockquote>
+      <div className="mt-6 flex items-center gap-2 border-t border-navy/5 pt-4 text-xs text-muted">
+        <span className="material-symbols-outlined text-sm text-brass">recommend</span>
+        <span>Recomendación respaldada</span>
+      </div>
     </article>
   );
 }

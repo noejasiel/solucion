@@ -54,6 +54,7 @@ export interface ContactChannel {
 export interface SimulatorConfig {
   amountMin: number;
   amountMax: number;
+  amountCustomMax: number;
   amountStep: number;
   amountDefault: number;
   yearsMin: number;
@@ -244,15 +245,16 @@ export const about = {
 } as const;
 
 export const simulatorConfig: SimulatorConfig = {
-  amountMin: 20_000,
+  amountMin: 10_000,
   amountMax: 6_000_000,
+  amountCustomMax: 100_000_000,
   amountStep: 10_000,
   amountDefault: 250_000,
   yearsMin: 1,
   yearsMax: 20,
   yearsDefault: 3,
-  rateMin: 12,
-  rateMax: 30,
+  rateMin: 3,
+  rateMax: 25,
   rateDefault: 15,
 };
 

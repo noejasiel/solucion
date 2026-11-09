@@ -120,6 +120,28 @@ export default function Hero() {
                 {hero.ctaSecondary.label}
               </motion.a>
             </div>
+
+            {/* Indicadores de confianza y transparencia */}
+            <div className="mt-8 flex flex-wrap items-center gap-y-2.5 gap-x-6 text-xs text-ivory/80">
+              <div className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-base text-brass" aria-hidden="true">
+                  verified_user
+                </span>
+                <span>Sin anticipos ni cobros previos</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-base text-brass" aria-hidden="true">
+                  schedule
+                </span>
+                <span>Diagnóstico en menos de 24 hrs</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-base text-brass" aria-hidden="true">
+                  location_on
+                </span>
+                <span>Cobertura en toda la República</span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </motion.div>
