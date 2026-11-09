@@ -14,13 +14,21 @@ const money = new Intl.NumberFormat("es-MX", {
   maximumFractionDigits: 2,
 });
 
+export interface GeneratedQuotePdf {
+  doc: jsPDF;
+  blob: Blob;
+  dataUri: string;
+  filename: string;
+  folio: string;
+}
+
 /** Se carga bajo demanda desde el simulador; no requiere un servicio de PDF. */
 export async function buildQuotePdf(
   quote: CreditQuote,
   prospect?: Partial<ProspectData> | null,
   requestId: string = crypto.randomUUID(),
   issuedAt: Date = new Date(),
-): Promise<Blob> {
+): Promise<GeneratedQuotePdf> {
   const logoResponse = await fetch(brand.logoLight, { signal: AbortSignal.timeout(10_000) }).catch(() => {
     throw new Error("No se pudo cargar el logotipo. Intenta descargar la cotización de nuevo.");
   });
@@ -233,5 +241,15 @@ export async function buildQuotePdf(
     doc.text(`Página ${page} de ${pages}`, pageWidth - margin, pageHeight - 10, { align: "right" });
   }
 
-  return doc.output("blob");
+  const filename = `cotizacion-solucion-crediticia-${folio.toLowerCase()}.pdf`;
+  const blob = doc.output("blob");
+  const dataUri = doc.output("datauristring", { filename });
+
+  return {
+    doc,
+    blob,
+    dataUri,
+    filename,
+    folio,
+  };
 }
